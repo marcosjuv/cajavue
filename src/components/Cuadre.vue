@@ -78,7 +78,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label  class="fw-bold" for="cash">Efectivo $:</label><br>
-                                    <p class="fw-bold fs-4 mb-1">{{ efectivo }}</p>
+                                    <p class="fw-bold fs-4 mb-1">{{ cash }}</p>
                                 </div>
                                 <div class="form-group">
                                     <label  class="fw-bold" for="zelle">Zelle:</label><br>
@@ -154,6 +154,7 @@ export default {
                 return
             }
             this.changeToDolar()
+            this.diferencia()
             this.cuadre.totalbs = Number(this.cuadre.efectivo) + Number(this.cuadre.punto) + Number(this.cuadre.transferencia) + Number(this.cuadre.pendiente) + Number(this.cuadre.cash) + Number(this.cuadre.zelle)
             this.cuadre.totaldls = (parseFloat(this.cuadre.totalbs) / parseFloat(this.cuadre.tasa1)).toFixed(2)
         },

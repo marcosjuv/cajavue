@@ -22,8 +22,8 @@
                             <input id="id" class="form-control" type="hidden" v-model="caja.id" name="id" disabled="true">
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="nombreCaja" class="form-label">caja</label>
-                            <input id="nombreCaja" class="form-control" type="text" v-model="caja.nombreCaja" name="nombreCaja">
+                            <label for="caja" class="form-label">caja</label>
+                            <input id="caja" class="form-control" type="text" v-model="caja.caja" name="caja">
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="descripcion" class="form-label">Descripcion</label>
@@ -84,7 +84,7 @@
                         <tbody>
                             <tr v-for="item in buscarCaja" :key="item.id">
                                 <th scope="row">{{item.id}}</th>
-                                <td>{{item.nombreCaja}}</td>
+                                <td>{{item.caja}}</td>
                                 <td>{{item.descripcion}}</td>
                                 <td>
                                     <div class="btn-group btn-group-sm d-flex justify-content-center" role="group" aria-label="Basic example">
@@ -124,7 +124,7 @@
             return{
                 caja:{
                     id:'',
-                    nombreCaja:'',
+                    caja:'',
                     descripcion:'',
                     is_rrss:false
                 },
@@ -134,12 +134,13 @@
         methods:{
             ...mapActions('cajas',['setCaja','modificarCaja','deleteCaja']),
             insertCaja(){
-                const uid = new ShortUniqueId({length: 10})
-                this.caja.id = uid()
+                // const uid = new ShortUniqueId({length: 10})
+                // this.caja.id = uid()
+                console.log(this.caja)
                 this.setCaja(this.caja)
                 this.caja = {
                     id:'',
-                    nombreCaja:'',
+                    caja:'',
                     descripcion:'',
                     is_rrss:false
                 }
@@ -148,7 +149,7 @@
                 const res = this.listCajas.find(item => item.id === id)
                 this.caja = {
                     id:res.id,
-                    nombreCaja:res.nombreCaja,
+                    caja:res.caja,
                     descripcion:res.descripcion,
                     is_rrss:res.is_rrss
                 }
@@ -157,7 +158,7 @@
                 this.modificarCaja(this.caja)
                 this.caja = {
                     id:'',
-                    nombreCaja:'',
+                    caja:'',
                     descripcion:'',
                     is_rrss:false
                 }
@@ -166,11 +167,11 @@
         computed:{
             ...mapState('cajas',['listCajas']),
             validacionCaja(){
-                return (this.caja.nombreCaja === '') ? true : false
+                return (this.caja.caja === '') ? true : false
             },
             buscarCaja(){
                 return this.listCajas.filter(caja => {
-                    return caja.nombreCaja.toLowerCase().includes(this.buscar.toLowerCase()) || 
+                    return caja.caja.toLowerCase().includes(this.buscar.toLowerCase()) || 
                     caja.id.toLowerCase().includes(cliente) ||
                     caja.descripcion.toLowerCase().includes(cliente)
                 })

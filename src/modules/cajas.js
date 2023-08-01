@@ -4,7 +4,7 @@ export default{
 		listCajas:[],
 	    caja:{
 	        id:'',
-	        nombreCaja:'',
+	        caja:'',
 	        descripcion:'',
 	        is_rrss:false
 	    }
@@ -15,27 +15,40 @@ export default{
 	    },
 		setCajas(state, payload){
         	state.listCajas.push(payload)
-        	localStorage.setItem('listCajas', JSON.stringify(state.listCajas))
+        	// localStorage.setItem('listCajas', JSON.stringify(state.listCajas))
 	    },	    
 	    updateCajas(state, payload){
 	        state.listCajas = state.listCajas.map(item => item.id === payload.id ? payload : item)
-	        localStorage.setItem('listCajas', JSON.stringify(state.listCajas))
+	        // localStorage.setItem('listCajas', JSON.stringify(state.listCajas))
 	    },
 	    eliminarCajas(state, payload){
 	        state.listCajas = state.listCajas.filter(item => item.id !== payload)
-	        localStorage.setItem('listCajas', JSON.stringify(state.listCajas))
+	        // localStorage.setItem('listCajas', JSON.stringify(state.listCajas))
 	    },      
 	},
 	actions:{
 		cargarLocalStorageCajas({commit}){
-	        if (localStorage.getItem('listCajas')) {
-	            commit('cargarCajas', JSON.parse(localStorage.getItem('listCajas')))
-	            return
-	        }
-	        localStorage.setItem('listCajas', JSON.stringify([]))
+	        // if (localStorage.getItem('listCajas')) {
+	        //     commit('cargarCajas', JSON.parse(localStorage.getItem('listCajas')))
+	        //     return
+	        // }
+	        // localStorage.setItem('listCajas', JSON.stringify([]))
 	    },
-		setCaja({commit}, caja){
-	        commit('setCajas', caja)
+		async setCaja({commit}, caja){
+			try {
+				const res = await fetch('http://localhost:8000/api/insertcajas', {
+					method:'POST',
+					headers:{
+						'Content-type':'application/json'
+					},
+					body:JSON.stringify(caja)
+				});
+				const dataDB = res.json;
+				console.log(dataDB)
+			} catch (error) {
+				console.log('error aqui: ', error)
+			}
+			commit('setCajas', caja)				
 	    },
 	    modificarCaja({commit}, caja){
 	        commit('updateCajas', caja)

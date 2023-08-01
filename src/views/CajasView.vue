@@ -82,10 +82,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="item in buscarCaja" :key="item.id">
-                                <th scope="row">{{item.id}}</th>
-                                <td>{{item.caja}}</td>
-                                <td>{{item.descripcion}}</td>
+                            <tr v-for="item in listCajas" :key="item.id">
+                                <th scope="row"> {{item.id}} </th>
+                                <td> {{item.caja}} </td>
+                                <td> {{item.descripcion}} </td>
                                 <td>
                                     <div class="btn-group btn-group-sm d-flex justify-content-center" role="group" aria-label="Basic example">
                                         <button @click="getForm(item.id)" type="button" class="btn btn-warning"><i class="bi bi-pencil-square"></i></button>
@@ -136,7 +136,7 @@
             insertCaja(){
                 // const uid = new ShortUniqueId({length: 10})
                 // this.caja.id = uid()
-                console.log(this.caja)
+                // console.log(this.caja)
                 this.setCaja(this.caja)
                 this.caja = {
                     id:'',

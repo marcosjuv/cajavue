@@ -27,7 +27,30 @@ export default{
 	    },      
 	},
 	actions:{
-		cargarLocalStorageCajas({commit}){
+		async cargarLocalStorageCajas({commit}){
+			try {
+				const res = await fetch('http://localhost:8000/api/getcajas',
+				{methods:'GET' });
+				const db = await res.json();
+				// console.log(db)
+
+				for (const datos in db) {
+					// console.log(datos);
+
+					commit ('setCajas', datos)
+				}
+				// const arraycajas = []
+				// arraycajas.push(db)
+
+				
+				// for(let datos in db){
+					
+				// }
+
+				
+			} catch (error) {
+				console.log(error)
+			}
 	        // if (localStorage.getItem('listCajas')) {
 	        //     commit('cargarCajas', JSON.parse(localStorage.getItem('listCajas')))
 	        //     return
@@ -43,14 +66,13 @@ export default{
 					},
 					body:JSON.stringify(caja)
 				});
-				const dataDB = res.json;
-				console.log(dataDB)
+				// const dataDB = await res.json;
 			} catch (error) {
 				console.log('error aqui: ', error)
 			}
 			commit('setCajas', caja)				
 	    },
-	    modificarCaja({commit}, caja){
+	    async modificarCaja({commit}, caja){
 	        commit('updateCajas', caja)
 	    },
 	    deleteCaja({commit}, id){

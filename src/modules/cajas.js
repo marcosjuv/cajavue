@@ -47,10 +47,10 @@ export default{
 					body:JSON.stringify(caja)
 				});
 				const dataDB = await res.json();
+				commit('setCajas', caja)				
 			} catch (error) {
 				console.log('error aqui: ', error)
 			}
-			commit('setCajas', caja)				
 	    },
 
 	    async modificarCaja({commit}, caja){
@@ -63,13 +63,16 @@ export default{
 					body:JSON.stringify(caja)
 				});
 				const dataDB = await res.json();
+				commit('updateCajas', caja)
 			} catch (error) {
 				console.log(error)
 			}
-	        commit('updateCajas', caja)
 	    },
 
-	    deleteCaja({commit}, id){
+	    async deleteCaja({commit}, id){
+			await fetch(`http://localhost:8000/api/deletecajas/${id}`,{
+				method:"DELETE",
+			})
 	        commit('eliminarCajas', id)
 	    },
 	}

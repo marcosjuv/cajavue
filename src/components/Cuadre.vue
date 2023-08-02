@@ -19,7 +19,7 @@
                             </div>
                             <div class="col-md-4">
                                 <select id="caja" v-model="cuadre.caja" class="form-select" :class="validaciones" aria-label="">
-                                    <option v-for="item in listCajas" :key="item.id" :value="item.nombreCaja">{{item.nombreCaja}}</option>
+                                    <option v-for="item in listCajas" :key="item.id" :value="item.id">{{item.caja}}</option>
                                 </select>                                
                                 <div class="invalid-feedback">Seleccione la caja</div>
                             </div>

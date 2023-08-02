@@ -136,7 +136,7 @@
             insertCaja(){
                 this.setCaja(this.caja)
                 this.caja = {
-                    id:int,
+                    id:'',
                     caja:'',
                     descripcion:'',
                     is_rrss:false

@@ -29,35 +29,12 @@ export default{
 	actions:{
 		async cargarLocalStorageCajas({commit}){
 			try {
-				const res = await fetch('http://localhost:8000/api/getcajas',
-				{methods:'GET' });
-				const db = await res.json();
-				// console.log('este es db.data. ',db.data)
-				// const arraycajas = []
-				// arraycajas.push(db.data)
-				
-				// for (const id in db.data) {				
-					// console.log(db.data[id])
-					
-				// }
-				// console.log(arraycajas)
-				commit ('cargarCajas', db.data)
-				// const arraycajas = []
-
-				
-				// for(let datos in db){
-					
-				// }
-
-				
+				const res = await fetch('http://localhost:8000/api/getcajas');	
+				const db = await res.json();				
+				commit ('cargarCajas', db.data)				
 			} catch (error) {
 				console.log(error)
 			}
-	        // if (localStorage.getItem('listCajas')) {
-	        //     commit('cargarCajas', JSON.parse(localStorage.getItem('listCajas')))
-	        //     return
-	        // }
-	        // localStorage.setItem('listCajas', JSON.stringify([]))
 	    },
 		async setCaja({commit}, caja){
 			try {
@@ -68,7 +45,6 @@ export default{
 					},
 					body:JSON.stringify(caja)
 				});
-				// const dataDB = await res.json;
 			} catch (error) {
 				console.log('error aqui: ', error)
 			}

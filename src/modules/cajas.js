@@ -36,6 +36,7 @@ export default{
 				console.log(error)
 			}
 	    },
+
 		async setCaja({commit}, caja){
 			try {
 				const res = await fetch('http://localhost:8000/api/insertcajas', {
@@ -51,15 +52,23 @@ export default{
 			}
 			commit('setCajas', caja)				
 	    },
+
 	    async modificarCaja({commit}, caja){
 			try {
-				const res = await fetch('http://localhost:8000/api/insertcajas');
+				const res = await fetch(`http://localhost:8000/api/updatecajas/${caja.id}`,{
+					method:'PUT',
+					headers:{
+						'Content-type':'application/json'
+					},
+					body:JSON.stringify(caja)
+				});
 				const dataDB = await res.json();
 			} catch (error) {
 				console.log(error)
 			}
 	        commit('updateCajas', caja)
 	    },
+
 	    deleteCaja({commit}, id){
 	        commit('eliminarCajas', id)
 	    },

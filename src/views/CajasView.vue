@@ -134,9 +134,6 @@
         methods:{
             ...mapActions('cajas',['setCaja','modificarCaja','deleteCaja']),
             insertCaja(){
-                // const uid = new ShortUniqueId({length: 10})
-                // this.caja.id = uid()
-                // console.log(this.caja)
                 this.setCaja(this.caja)
                 this.caja = {
                     id:'',
@@ -172,8 +169,8 @@
             buscarCaja(){
                 return this.listCajas.filter(caja => {
                     return caja.caja.toLowerCase().includes(this.buscar.toLowerCase()) || 
-                    caja.id.toLowerCase().includes(cliente) ||
-                    caja.descripcion.toLowerCase().includes(cliente)
+                    caja.id.includes(this.buscar) ||
+                    caja.descripcion.toLowerCase().includes(this.buscar)
                 })
             }
         }

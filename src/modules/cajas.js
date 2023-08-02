@@ -32,15 +32,17 @@ export default{
 				const res = await fetch('http://localhost:8000/api/getcajas',
 				{methods:'GET' });
 				const db = await res.json();
-				// console.log(db)
-
-				for (const datos in db) {
-					// console.log(datos);
-
-					commit ('setCajas', datos)
-				}
+				// console.log('este es db.data. ',db.data)
 				// const arraycajas = []
-				// arraycajas.push(db)
+				// arraycajas.push(db.data)
+				
+				// for (const id in db.data) {				
+					// console.log(db.data[id])
+					
+				// }
+				// console.log(arraycajas)
+				commit ('cargarCajas', db.data)
+				// const arraycajas = []
 
 				
 				// for(let datos in db){

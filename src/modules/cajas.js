@@ -45,12 +45,19 @@ export default{
 					},
 					body:JSON.stringify(caja)
 				});
+				const dataDB = await res.json();
 			} catch (error) {
 				console.log('error aqui: ', error)
 			}
 			commit('setCajas', caja)				
 	    },
 	    async modificarCaja({commit}, caja){
+			try {
+				const res = await fetch('http://localhost:8000/api/insertcajas');
+				const dataDB = await res.json();
+			} catch (error) {
+				console.log(error)
+			}
 	        commit('updateCajas', caja)
 	    },
 	    deleteCaja({commit}, id){

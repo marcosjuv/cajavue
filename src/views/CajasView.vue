@@ -82,7 +82,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="item in listCajas" :key="item.id">
+                            <tr v-for="item, in listCajas" :key="item.id">
                                 <th scope="row"> {{item.id}} </th>
                                 <td> {{item.caja}} </td>
                                 <td> {{item.descripcion}} </td>
@@ -123,7 +123,7 @@
         data(){
             return{
                 caja:{
-                    id:'',
+                    id: '',
                     caja:'',
                     descripcion:'',
                     is_rrss:false
@@ -136,7 +136,7 @@
             insertCaja(){
                 this.setCaja(this.caja)
                 this.caja = {
-                    id:'',
+                    id:int,
                     caja:'',
                     descripcion:'',
                     is_rrss:false

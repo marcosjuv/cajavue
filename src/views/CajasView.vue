@@ -38,7 +38,7 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <div v-if="caja.id === '' ">
+                    <div v-if="caja.id >= 0 || caja.id === 'null'">
                         <div class="d-grid">
                             <button class="btn btn-primary" @click="insertCaja" :disabled="validacionCaja" type="button"><i class="bi bi-database-fill-add"></i> Guardar caja</button>
                         </div>                            
@@ -57,7 +57,7 @@
                 <div class="table-responsive-md">
                     <div class="row">
                         <div class="col-md-12 d-flex justify-content-between">
-                            <div class="col-md-3 mb-3 d-flex justify-content-center align-self-center">
+                            <!-- <div class="col-md-3 mb-3 d-flex justify-content-center align-self-center">
                                 <span class="mt-2">Mostrar</span>
                                 <select id="cant" class="form-select form-select-sm mx-2 p-2" aria-label="Default select example">
                                     <option selected>10</option>
@@ -66,7 +66,7 @@
                                     <option value="3">100</option>
                                 </select>
                                 <span class="mt-2" >registros</span> 
-                            </div>
+                            </div> -->
                             <div class="col-md-3 mb-3">
                                 <input class="form-control" type="text" name="buscar" v-model="buscar" placeholder="Buscar">
                             </div>                            
@@ -82,7 +82,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="item, in listCajas" :key="item.id">
+                            <tr v-for="item in listCajas" :key="item.id">
                                 <th scope="row"> {{item.id}} </th>
                                 <td> {{item.caja}} </td>
                                 <td> {{item.descripcion}} </td>
@@ -123,7 +123,7 @@
         data(){
             return{
                 caja:{
-                    id: '',
+                    id: 0,
                     caja:'',
                     descripcion:'',
                     is_rrss:false
@@ -134,9 +134,10 @@
         methods:{
             ...mapActions('cajas',['setCaja','modificarCaja','deleteCaja']),
             insertCaja(){
-                this.setCaja(this.caja)
+                this.setCaja(this.caja) 
+                // this.caja.id++               
                 this.caja = {
-                    id:'',
+                    id: this.caja.id,
                     caja:'',
                     descripcion:'',
                     is_rrss:false
@@ -154,7 +155,7 @@
             updateCaja(){
                 this.modificarCaja(this.caja)
                 this.caja = {
-                    id:'',
+                    // id: 0,
                     caja:'',
                     descripcion:'',
                     is_rrss:false

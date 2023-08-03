@@ -22,19 +22,29 @@
                                 <input id="id" class="form-control" type="hidden" name="id" v-model="empleado.id">
                             </div>
                             <div class="col-md-4 mb-3">
-                                <label for="nombre" class="form-label">Nombre</label>
-                                <input id="nombre" class="form-control" :class="validationEmployee" type="text" name="nombre" v-model="empleado.nombre">
+                                <label for="name" class="form-label">Nombre</label>
+                                <input id="name" class="form-control" :class="validationEmployee" type="text" name="name" v-model="empleado.name">
                                 <div class="invalid-feedback">Nombre es requerido</div>
                             </div>
                             <div class="col-md-4 mb-3">
-                                <label for="apellido" class="form-label">Apellido</label>
-                                <input id="apellido" class="form-control" :class="validationEmployee" type="text" name="apellido" v-model="empleado.apellido">
+                                <label for="lastname" class="form-label">Apellido</label>
+                                <input id="lastname" class="form-control" :class="validationEmployee" type="text" name="lastname" v-model="empleado.lastname">
                                 <div class="invalid-feedback">Apellido es requerido</div>
                             </div>
                             <div class="col-md-4 mb-3">
-                                <label for="cedula" class="form-label">Cedula</label>
-                                <input id="cedula" class="form-control" :class="validationEmployee" type="text" name="cedula" v-model="empleado.cedula">
-                                <div class="invalid-feedback">Cedula es requerido</div>
+                                <label for="card_id" class="form-label">Cedula</label>
+                                <input id="card_id" class="form-control" :class="validationEmployee" type="text" name="card_id" v-model="empleado.card_id">
+                                <div class="invalid-feedback">card_id es requerido</div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="email" class="form-label">Correo</label>
+                                <input id="email" class="form-control" :class="validationEmployee" type="text" name="email" v-model="empleado.email">
+                                <div class="invalid-feedback">Correo es requerido</div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="password" class="form-label">Clave</label>
+                                <input id="password" class="form-control" :class="validationEmployee" type="password" name="password" v-model="empleado.password">
+                                <div class="invalid-feedback">Clave es requerido</div>
                             </div>
                         </div>
                         <div class="row">
@@ -83,7 +93,7 @@
                                 <span class="mt-2" >registros</span> 
                             </div>
                             <div class="col-md-3 mb-3">
-                                <input v-model="buscar" class="form-control" type="text" name="buscar" placeholder="Buscar">
+                                <input class="form-control" type="text" name="buscar" placeholder="Buscar">
                             </div>                            
                         </div>
                     </div>
@@ -100,12 +110,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <div class="col-md-12 d-flex justify-content-center align-self-center" v-if="buscarCedula.length === 0"><p class="text-center">No hay registros</p></div>
-                            <tr v-for="item in buscarCedula" :key="item.id">
-                            <th scope="row">{{item.id}}</th>
-                                <td>{{item.nombre}}</td>
-                                <td>{{item.apellido}}</td>
-                                <td>{{item.cedula}}</td>
+                            <!-- <div class="col-md-12 d-flex justify-content-center align-self-center" v-if="buscarcard_id.length === 0"><p class="text-center">No hay registros</p></div> -->
+                            <tr v-for="item in listEmpleados" :key="item.id">
+                            <th scope="row">{{ item.id }}</th>
+                                <td>{{ item.name }}</td>
+                                <td>{{ item.lastname }}</td>
+                                <td>{{ item.card_id }}</td>
                                 <td v-if="item.is_supervisor">
                                     <td>Supervisor</td>
                                 </td>
@@ -156,9 +166,11 @@ export default {
         return{
             empleado:{
                 id:'',
-                nombre:'',
-                apellido:'',
-                cedula:'',
+                name:'',
+                lastname:'',
+                card_id:'',
+                email:'',
+                password:'',
                 is_supervisor:false,
                 is_rrss:false
             },
@@ -168,14 +180,16 @@ export default {
     methods:{
         ...mapActions('empleados',['setEmpleados','deleteEmpleados','modificarEmpleados']),
         insertEmpleado(){ 
-            const uid = new ShortUniqueId({length: 10})
-            this.empleado.id = uid()
+            // const uid = new ShortUniqueId({length: 10})
+            // this.empleado.id = uid()
             this.setEmpleados(this.empleado)
             this.empleado = {
                 id:'',
-                nombre:'',
-                apellido:'',
-                cedula:'',
+                name:'',
+                lastname:'',
+                card_id:'',
+                email:'',
+                password:'',
                 is_supervisor:false,
                 is_rrss:false
             }    
@@ -184,9 +198,11 @@ export default {
             const res = this.listEmpleados.find(item => item.id === id)
             this.empleado = {
                 id:res.id,
-                nombre:res.nombre,
-                apellido:res.apellido,
-                cedula:res.cedula,
+                name:res.name,
+                lastname:res.lastname,
+                card_id:res.card_id,
+                email:res.email,
+                password:res.password,
                 is_supervisor:res.is_supervisor,
                 is_rrss:res.is_rrss,
             }
@@ -195,9 +211,11 @@ export default {
             this.modificarEmpleados(this.empleado)
             this.empleado = {
                 id:'',
-                nombre:'',
-                apellido:'',
-                cedula:'',
+                name:'',
+                lastname:'',
+                card_id:'',
+                email:'',
+                password:'',
                 is_supervisor:false,
                 is_rrss:false
             }    
@@ -207,19 +225,19 @@ export default {
         ...mapState('empleados',['listEmpleados']),
         ...mapState('cargos',['listCargos']),
         validationEmployee(){
-            return this.empleado.nombre === '' || this.empleado.apellido === '' || this.empleado.cedula === '' ? 'is-invalid' : 'is-valid'
+            return this.empleado.name === '' || this.empleado.lastname === '' || this.empleado.card_id === '' || this.empleado.email === '' || this.empleado.password === '' ? 'is-invalid' : 'is-valid'
         },
         lockBtn(){
-            return this.empleado.nombre === '' || this.empleado.apellido === '' || this.empleado.cedula === '' ? true : false
+            return this.empleado.name === '' || this.empleado.lastname === '' || this.empleado.card_id === '' ? true : false
         },
-        buscarCedula(){
-            return this.listEmpleados.filter(item => {
-                return item.id.toLowerCase().includes(this.buscar) ||
-                item.nombre.toLowerCase().includes(this.buscar) ||
-                item.apellido.toLowerCase().includes(this.buscar) ||
-                item.cedula.includes(this.buscar)
-            })
-        },
+        // buscarCedula(){
+        //     return this.listEmpleados.filter(item => {
+        //         return item.nombre.toLowerCase().includes(this.buscar) ||
+        //         item.apellido.toLowerCase().includes(this.buscar) ||
+        //         item.email.toLowerCase().includes(this.buscar) ||
+        //         item.cedula.includes(this.buscar)
+        //     })
+        // },
     }
 }
 </script>

@@ -9,19 +9,22 @@
                                 <select id="supervisor" v-model="cuadre.supervisor"  class="form-select" :class="validaciones" aria-label="Current">
                                     <option v-for="item in is_supervisor" :key="item.id" :value="item.nombre">{{item.nombre}} {{item.apellido}}</option>
                                 </select>                                
-                                <div class="invalid-feedback">Seleccione el supervisor</div>
+                                <div v-if="listEmpleados.length === 0" class="invalid-feedback">No hay registros</div>                               
+                                <div v-else class="invalid-feedback">Seleccione el supervisor</div>
                             </div>
                             <div class="col-md-4">
-                                <select id="cajero" v-model="cuadre.selected" class="form-select" :class="validaciones" aria-label="">
+                                <select id="cajero" v-model="cuadre.cajero" class="form-select" :class="validaciones" aria-label="">
                                     <option v-for="item in is_cajero" :key="item.id" :value="item">{{item.nombre}} {{item.apellido}}</option>                                
                                 </select>
-                                <div class="invalid-feedback">Seleccione el cajero</div>
+                                <div v-if="listEmpleados.length === 0" class="invalid-feedback">No hay registros</div>                               
+                                <div v-else class="invalid-feedback">Seleccione el cajero</div>
                             </div>
                             <div class="col-md-4">
                                 <select id="caja" v-model="cuadre.caja" class="form-select" :class="validaciones" aria-label="">
                                     <option v-for="item in listCajas" :key="item.id" :value="item.id">{{item.caja}}</option>
                                 </select>                                
-                                <div class="invalid-feedback">Seleccione la caja</div>
+                                <div v-if="listCajas.length === 0" class="invalid-feedback" >No hay registros</div>
+                                <div v-else class="invalid-feedback">Seleccione la caja</div>
                             </div>
                         </div>
                     </div>
@@ -147,7 +150,6 @@ export default {
         cuadre: Object
     },
     methods:{
-        // ...mapActions(['calcular']),
         calcular(){
             if (this.cuadre.tasa1 === 0) {
                 alert('¡¡¡ Ingrese la tasa del dia !!!')
@@ -220,10 +222,7 @@ export default {
         },
         premium(){
             return this.cuadre.premiumdls === 0 || this.cuadre.premiumdls === 'NaN' ? '0.00' : this.cuadre.premiumdls
-        },
-        // diferencia(){
-        //     return this.cuadre.diferenciabs === 0 ? '0.00' : this.cuadre.diferenciabs
-        // }
+        }
     }
 }
 </script>

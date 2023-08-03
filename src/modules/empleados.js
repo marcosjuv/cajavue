@@ -58,14 +58,26 @@ export default{
 			console.log('error aqui: ', error)
 		}
 	    },
-	    modificarEmpleados({commit}, empleado){
-	        commit('updateEmploye', empleado)
+	    async modificarEmpleados({commit}, empleado){
+			try {
+				const res = await fetch(`http://localhost:8000/api/updateuser/${empleado.id}`,{
+					method:'PUT',
+					headers:{
+						'Content-type':'application/json'
+					},
+					body:JSON.stringify(empleado)
+				});
+				const dataDB = await res.json();
+				commit('updateEmploye', empleado)
+			} catch (error) {
+				console.log(error)
+			}
 	    },
-	    deleteEmpleados({commit}, id){
+	    async deleteEmpleados({commit}, id){
+			await fetch(`http://localhost:8000/api/deleteuser/${id}`,{
+				method:"DELETE",
+			})
 	        commit('eliminarEmploye', id)
-	    },
-	    Employe({commit}, empleado){
-	    	commit('Employe', empleado)
 	    }
 	}
 }

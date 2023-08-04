@@ -1,7 +1,0 @@
-{
-	"supervisor":[
-		{"id":"1","name":"supervisor1"},
-		{"id":"2","name":"supervisor2"},
-		{"id":"3","name":"supervisor3"}
-	]
-}

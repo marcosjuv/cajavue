@@ -7,14 +7,14 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <select id="supervisor" v-model="cuadre.supervisor"  class="form-select" :class="validaciones" aria-label="Current">
-                                    <option v-for="item in is_supervisor" :key="item.id" :value="item.nombre">{{item.nombre}} {{item.apellido}}</option>
+                                    <option v-for="item in is_supervisor" :key="item.id" :value="item.name">{{item.name}} {{item.lastname}}</option>
                                 </select>                                
                                 <div v-if="listEmpleados.length === 0" class="invalid-feedback">No hay registros</div>                               
                                 <div v-else class="invalid-feedback">Seleccione el supervisor</div>
                             </div>
                             <div class="col-md-4">
                                 <select id="cajero" v-model="cuadre.cajero" class="form-select" :class="validaciones" aria-label="">
-                                    <option v-for="item in is_cajero" :key="item.id" :value="item">{{item.nombre}} {{item.apellido}}</option>                                
+                                    <option v-for="item in is_cajero" :key="item.id" :value="item">{{item.name}} {{item.lastname}}</option>                                
                                 </select>
                                 <div v-if="listEmpleados.length === 0" class="invalid-feedback">No hay registros</div>                               
                                 <div v-else class="invalid-feedback">Seleccione el cajero</div>
@@ -143,7 +143,7 @@
     </div>
 </template>
 <script>
-import {mapState, mapActions} from 'vuex'
+import {mapState} from 'vuex'
 export default {
     name:'Cuadre',
     props:{
@@ -194,10 +194,10 @@ export default {
             return parseFloat(this.cuadre.totalbs) === 0 ? '0.00' : (parseFloat(this.cuadre.totalbs)).toFixed(2)
         },
         is_supervisor(){
-            return this.listEmpleados.filter(item => item.is_supervisor === true)
+            return this.listEmpleados.filter(item => item.is_supervisor === 1)
         },
         is_cajero(){
-            return this.listEmpleados.filter(item => item.is_supervisor === false)
+            return this.listEmpleados.filter(item => item.is_supervisor === 0)
         },
 
         // --------------------------------  Campos ---------------------------------------//

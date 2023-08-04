@@ -29,9 +29,6 @@ export default{
 	    updateEmploye(state, payload){
 	        state.listEmpleados = state.listEmpleados.map(item => item.id === payload.id ? payload : item)
 	        // localStorage.setItem('listEmpleados', JSON.stringify(state.listEmpleados))
-	    },
-	    Employe(state, payload){
-	    	state.listEmpleados = state.listEmpleados.filter(item => item.is_rrss === payload)
 	    }
 	},
 	actions:{

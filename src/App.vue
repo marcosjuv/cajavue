@@ -14,14 +14,12 @@ export default {
   },
   methods:{
     ...mapActions(['cargarLocalStorage']),
-//    ...mapActions('cargos',['cargarLocalStorageCargo']),
     ...mapActions('empleados',['cargarLocalStorageEmpleados']),
     ...mapActions('cajas',['cargarLocalStorageCajas']),
     ...mapActions('cierrecajas',['cargarLocalStorageCierreCajas'])
   },
   created(){
     this.cargarLocalStorage()
-//    this.cargarLocalStorageCargo()
     this.cargarLocalStorageEmpleados()
     this.cargarLocalStorageCajas()
     this.cargarLocalStorageCierreCajas()

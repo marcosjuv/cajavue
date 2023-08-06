@@ -91,7 +91,7 @@ export default {
                 id:'',
                 fecha:'',
                 hora:'',
-                // supervisor:'',
+                monto:'',
                 listcuadre:{}
             }
         }
@@ -117,8 +117,7 @@ export default {
             const today = new Date()
             const fecha = today.toLocaleDateString('es-ES')
             const hora = today.toLocaleTimeString('es-ES')
-            const uid = new ShortUniqueId({length: 10})
-            this.cierreCuadre.id = uid()
+            this.cierreCuadre.id = 'abc'
             this.cierreCuadre.fecha = fecha
             this.cierreCuadre.hora = hora
             // this.cierreCuadre.supervisor = ''

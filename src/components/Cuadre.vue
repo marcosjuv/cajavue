@@ -14,7 +14,7 @@
                             </div>
                             <div class="col-md-4">
                                 <select id="cajero" v-model="cuadre.cajero" class="form-select" :class="validaciones" aria-label="">
-                                    <option v-for="item in is_cajero" :key="item.id" :value="item">{{item.name}} {{item.lastname}}</option>                                
+                                    <option v-for="item in is_cajero" :key="item.id" :value="item.name">{{item.name}} {{item.lastname}}</option>                                
                                 </select>
                                 <div v-if="listEmpleados.length === 0" class="invalid-feedback">No hay registros</div>                               
                                 <div v-else class="invalid-feedback">Seleccione el cajero</div>

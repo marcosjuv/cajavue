@@ -20,7 +20,6 @@
                         <span class="fw-bold fs-5">{{getFecha}} - {{getHora}}</span>
                         
                     </div>
-                    <div class="invalid-feedback">Seleccione el cajero</div>
                 </div>
                 <hr>
                 <div class="row">
@@ -89,26 +88,22 @@ data(){
             zelledls: 0,
             premiumdls: 0,
             totaldls: 0,
-            diferenciadls: 0,
-            selected:{}     
+            diferenciadls: 0
         }
     }
 },
 methods:{
     ...mapState('empleados',['listEmpleados']),
     ...mapActions(['setCuadre']),
-        cuadreCaja(){            
-            const uid = new ShortUniqueId({length: 10})
-            this.cuadre.id = uid()
-            this.cuadre.cajero = this.cuadre.selected.nombre
-            this.cuadre.is_rrss = this.cuadre.selected.is_rrss
+        cuadreCaja(){  
+            this.cuadre.id = '2'
             this.setCuadre(this.cuadre)
             this.cuadre = {
                 id: '',
                 fecha:'',
                 hora:'',
                 supervisor: this.cuadre.supervisor,
-                cajero: this.cuadre.nombre,
+                cajero: this.cuadre.cajero,
                 caja: this.cuadre.caja,
                 tasa1: this.cuadre.tasa1,
                 efectivo: '',

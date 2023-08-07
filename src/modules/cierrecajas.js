@@ -22,8 +22,8 @@ export default{
 	    },
 	    setListCierres({commit}, listCierres){
 	    	commit('set', listCierres)
-	    	// localStorage.removeItem('listcuadre')
-	    	// location.reload()
+	    	localStorage.removeItem('listcuadre')
+	    	location.reload()
 	    }		
 	}
 }

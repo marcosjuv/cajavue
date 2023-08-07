@@ -96,7 +96,7 @@ methods:{
     ...mapState('empleados',['listEmpleados']),
     ...mapActions(['setCuadre']),
         cuadreCaja(){  
-            this.cuadre.id = '2'
+            this.cuadre.id = '3'
             this.setCuadre(this.cuadre)
             this.cuadre = {
                 id: '',

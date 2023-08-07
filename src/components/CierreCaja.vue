@@ -117,7 +117,7 @@ export default {
             const today = new Date()
             const fecha = today.toLocaleDateString('es-ES')
             const hora = today.toLocaleTimeString('es-ES')
-            this.cierreCuadre.id = 'abc'
+            this.cierreCuadre.id = 'def'
             this.cierreCuadre.fecha = fecha
             this.cierreCuadre.hora = hora
             // this.cierreCuadre.supervisor = ''

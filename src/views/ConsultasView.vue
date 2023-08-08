@@ -44,6 +44,7 @@
                                 <th>Documento</th>
                                 <th>Fecha</th>
                                 <th>Hora</th>
+                                <th>Monto</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -52,6 +53,7 @@
                                 <th scope="row">{{item.id}}</th>
                                 <td>{{item.fecha}}</td>
                                 <td>{{item.hora}}</td>
+                                <td>{{item.monto}}</td>
                                 <td>
                                     <div class="btn-group btn-group-sm d-flex justify-content-center" role="group" aria-label="Basic example">  <!-- d-flex justify-content-center -->
                                         <router-link :to="{name:'detallecierre', params:{id:item.id}}" type="button" class="btn btn-primary"><i class="bi bi-eye"></i></router-link>
@@ -94,13 +96,6 @@ export default {
         return {
             buscar:'',
             fecha:''
-        }
-    },
-    methods:{
-        prueba(){
-            this.fecha = new Date().toLocaleDateString("es-ES")
-           
-            console.log(this.fecha)
         }
     },
     computed:{

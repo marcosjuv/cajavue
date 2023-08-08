@@ -9,14 +9,13 @@ export default createStore({
 state: {
     listcuadre:[],
     cuadre:{
-        id:'',
         supervisor:'',
         cajero:'',
         caja:'',
         is_rrss:false,      
         fecha:'',
         hora:'',
-        tasa1: 0,
+        tasa: 0,
         efectivo: 0,
         punto: 0,
         transferencia: 0,
@@ -25,8 +24,7 @@ state: {
         zelle: 0,
         premium: 0,
         totalbs: 0,
-        diferenciabs: 0,
-        selected:{}
+        diferenciabs: 0
     },
 },
 getters: {},

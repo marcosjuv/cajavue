@@ -20,10 +20,22 @@ export default{
 	        }
 	        localStorage.setItem('listCierres', JSON.stringify([]))
 	    },
-	    setListCierres({commit}, listCierres){
-	    	commit('set', listCierres)
-	    	localStorage.removeItem('listcuadre')
-	    	location.reload()
+	    async setListCierres({commit}, listCierres){
+			try {
+				const res = await fetch('http://localhost:8000/api/pruebacierre', {
+					method:'POST',
+					headers:{
+						'Content-type':'application/json'
+					},
+					body:JSON.stringify(listCierres)
+				});
+				const dataDB = await res.json();
+				commit('set', listCierres)
+			} catch (error) {
+				console.log(error)
+			}
+	    	// localStorage.removeItem('listcuadre')
+	    	// location.reload()
 	    }		
 	}
 }

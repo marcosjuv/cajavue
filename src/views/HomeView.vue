@@ -70,7 +70,7 @@ data(){
             cajero:'',
             caja:'',
             is_rrss:false,          
-            tasa1: 0,
+            tasa: 0,
             efectivo: 0,
             punto: 0,
             transferencia: 0,
@@ -95,8 +95,24 @@ data(){
 methods:{
     ...mapState('empleados',['listEmpleados']),
     ...mapActions(['setCuadre']),
-        cuadreCaja(){  
-            this.cuadre.id = '3'
+    formatDate(date) {
+            var d = new Date(date),
+                month = '' + (d.getMonth() + 1),
+                day = '' + d.getDate(),
+                year = d.getFullYear();
+
+            if (month.length < 2) 
+                month = '0' + month;
+            if (day.length < 2) 
+                day = '0' + day;
+
+            return [year, month, day].join('-');
+        },
+        cuadreCaja(){
+            const uid = new ShortUniqueId({length: 10})
+            const today = new Date()
+            this.cuadre.fecha = this.formatDate(today)
+            this.cuadre.id = uid()
             this.setCuadre(this.cuadre)
             this.cuadre = {
                 id: '',
@@ -105,7 +121,7 @@ methods:{
                 supervisor: this.cuadre.supervisor,
                 cajero: this.cuadre.cajero,
                 caja: this.cuadre.caja,
-                tasa1: this.cuadre.tasa1,
+                tasa: this.cuadre.tasa,
                 efectivo: '',
                 punto: '',
                 transferencia: '',
@@ -132,7 +148,7 @@ methods:{
         getFecha(){
             const today = new Date()
             const fecha = today.toLocaleDateString('es-ES')
-            return this.cuadre.fecha = fecha
+            return fecha
         },
         getHora(){
             const today = new Date()

@@ -2,7 +2,8 @@
     <div class="container">
     	<hr>
     	<div class="card mt-3">
-    		<div class="card-header"><h3 class="fw-bold">Monto Total: Bs. {{sumaTotal}}</h3></div>	
+    		<div class="card-header">
+                <h3 class="fw-bold">Monto Total: Bs. {{sumaTotal}}</h3></div>	
     		<div class="card-body">
     			<table class="table table-sm table-bordered table-striped table-hover">
     				<thead>
@@ -75,7 +76,7 @@ export default {
                 supervisor:'',
                 cajero:'',
                 caja:'',
-                tasa1:0,
+                tasa:0,
                 efectivo:0,
                 transferencia:0,
                 punto:0,
@@ -91,6 +92,7 @@ export default {
                 id:'',
                 fecha:'',
                 hora:'',
+                supervisor:'',
                 monto:'',
                 listcuadre:{}
             }
@@ -106,6 +108,11 @@ export default {
             this.listcuadre.forEach(value => suma += value.totalbs)
             return this.detalle.montoTotal = (parseFloat(suma)).toFixed(2)
         },
+        setValueInput(){
+            let suma = 0
+            this.listcuadre.forEach(value => suma += value.totalbs)
+            return this.cierreCuadre.monto = (parseFloat(suma)).toFixed(2)
+        },
         lockCuadre(){
             return this.listcuadre.length === 0 ? true : false
         }
@@ -113,14 +120,26 @@ export default {
     methods:{
     	...mapActions(['deleteCuadre']),
         ...mapActions('cierrecajas',['setListCierres']),
-        insertCuadre(){
+        formatDate(date) {
+            var d = new Date(date),
+                month = '' + (d.getMonth() + 1),
+                day = '' + d.getDate(),
+                year = d.getFullYear();
+
+            if (month.length < 2) 
+                month = '0' + month;
+            if (day.length < 2) 
+                day = '0' + day;
+
+            return [year, month, day].join('-');
+        },
+        insertCuadre(){ 
             const today = new Date()
-            const fecha = today.toLocaleDateString('es-ES')
             const hora = today.toLocaleTimeString('es-ES')
-            this.cierreCuadre.id = 'def'
-            this.cierreCuadre.fecha = fecha
+            this.cierreCuadre.fecha = this.formatDate(today)
             this.cierreCuadre.hora = hora
-            // this.cierreCuadre.supervisor = ''
+            this.cierreCuadre.monto = this.sumaTotal
+            this.cierreCuadre.supervisor = this.listcuadre[0].supervisor
             this.cierreCuadre.listcuadre = this.listcuadre
             this.setListCierres(this.cierreCuadre)
             this.cierreCuadre = {
@@ -128,6 +147,7 @@ export default {
                 fecha:'',
                 hora:'',
                 supervisor:'',
+                monto:'',
                 listcuadre:{}
             }
         },
@@ -137,7 +157,7 @@ export default {
             this.detalle.supervisor = query.supervisor
             this.detalle.cajero = query.cajero
             this.detalle.caja = query.caja
-            this.detalle.tasa1 = query.tasa1
+            this.detalle.tasa = query.tasa
             this.detalle.efectivo = query.efectivo
             this.detalle.transferencia = query.transferencia
             this.detalle.punto = query.punto

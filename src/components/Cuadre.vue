@@ -7,14 +7,14 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <select id="supervisor" v-model="cuadre.supervisor"  class="form-select" :class="validaciones" aria-label="Current">
-                                    <option v-for="item in is_supervisor" :key="item.id" :value="item.name">{{item.name}} {{item.lastname}}</option>
+                                    <option v-for="item in is_supervisor" :key="item.id" :value="item.name+' '+item.lastname">{{item.name}} {{item.lastname}}</option>
                                 </select>                                
                                 <div v-if="listEmpleados.length === 0" class="invalid-feedback">No hay registros</div>                               
                                 <div v-else class="invalid-feedback">Seleccione el supervisor</div>
                             </div>
                             <div class="col-md-4">
                                 <select id="cajero" v-model="cuadre.cajero" class="form-select" :class="validaciones" aria-label="">
-                                    <option v-for="item in is_cajero" :key="item.id" :value="item.name">{{item.name}} {{item.lastname}}</option>                                
+                                    <option v-for="item in is_cajero" :key="item.id" :value="item.name+' '+item.lastname">{{item.name}} {{item.lastname}}</option>                                
                                 </select>
                                 <div v-if="listEmpleados.length === 0" class="invalid-feedback">No hay registros</div>                               
                                 <div v-else class="invalid-feedback">Seleccione el cajero</div>
@@ -109,8 +109,8 @@
                     <div class="card-body">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label class="fw-bold" for="tasa1">Tasa 1:</label>
-                                <input id="tasa1" type="text" class="form-control mb-2" v-model.number="cuadre.tasa1">
+                                <label class="fw-bold" for="tasa">Tasa 1:</label>
+                                <input id="tasa" type="text" class="form-control mb-2" v-model.number="cuadre.tasa">
                             </div>
                         </div>
                     </div>
@@ -151,28 +151,28 @@ export default {
     },
     methods:{
         calcular(){
-            if (this.cuadre.tasa1 === 0) {
+            if (this.cuadre.tasa === 0) {
                 alert('¡¡¡ Ingrese la tasa del dia !!!')
                 return
             }
             this.changeToDolar()
             this.diferencia()
             this.cuadre.totalbs = Number(this.cuadre.efectivo) + Number(this.cuadre.punto) + Number(this.cuadre.transferencia) + Number(this.cuadre.pendiente) + Number(this.cuadre.cash) + Number(this.cuadre.zelle)
-            this.cuadre.totaldls = (parseFloat(this.cuadre.totalbs) / parseFloat(this.cuadre.tasa1)).toFixed(2)
+            this.cuadre.totaldls = (parseFloat(this.cuadre.totalbs) / parseFloat(this.cuadre.tasa)).toFixed(2)
         },
         diferencia(){
             this.cuadre.diferenciabs = (this.cuadre.totalbs - this.cuadre.premium).toFixed(2)
-            this.cuadre.diferenciadls = (this.cuadre.diferenciabs / this.cuadre.tasa1).toFixed(2)
-            this.cuadre.premiumdls = (this.cuadre.premium / this.cuadre.tasa1).toFixed(2)
+            this.cuadre.diferenciadls = (this.cuadre.diferenciabs / this.cuadre.tasa).toFixed(2)
+            this.cuadre.premiumdls = (this.cuadre.premium / this.cuadre.tasa).toFixed(2)
         },
         changeToDolar(){
-            this.cuadre.efectivodls = (this.cuadre.efectivo / this.cuadre.tasa1).toFixed(2),
-            this.cuadre.puntodls = (this.cuadre.punto / this.cuadre.tasa1).toFixed(2),
-            this.cuadre.transferenciadls = (this.cuadre.transferencia / this.cuadre.tasa1).toFixed(2),
-            this.cuadre.pendientedls = (this.cuadre.pendiente / this.cuadre.tasa1).toFixed(2),
-            this.cuadre.cashdls = (this.cuadre.cash / this.cuadre.tasa1).toFixed(2),
-            this.cuadre.zelledls = (this.cuadre.zelle / this.cuadre.tasa1).toFixed(2),
-            this.cuadre.premiumdls = (this.cuadre.premium / this.cuadre.tasa1).toFixed(2)
+            this.cuadre.efectivodls = (this.cuadre.efectivo / this.cuadre.tasa).toFixed(2),
+            this.cuadre.puntodls = (this.cuadre.punto / this.cuadre.tasa).toFixed(2),
+            this.cuadre.transferenciadls = (this.cuadre.transferencia / this.cuadre.tasa).toFixed(2),
+            this.cuadre.pendientedls = (this.cuadre.pendiente / this.cuadre.tasa).toFixed(2),
+            this.cuadre.cashdls = (this.cuadre.cash / this.cuadre.tasa).toFixed(2),
+            this.cuadre.zelledls = (this.cuadre.zelle / this.cuadre.tasa).toFixed(2),
+            this.cuadre.premiumdls = (this.cuadre.premium / this.cuadre.tasa).toFixed(2)
         }
     },
     computed:{
@@ -188,7 +188,7 @@ export default {
             return (this.cuadre.supervisor === '' || this.cuadre.selected === '' || this.cuadre.caja === '') ? 'is-invalid' : 'is-valid'
         },
         lockButton(){
-            return (this.cuadre.supervisor === '' || this.cuadre.selected === '' || this.cuadre.caja === '' || this.cuadre.fecha === '' || this.cuadre.totalbs === 0.00) ? true : false
+            return (this.cuadre.supervisor === '' || this.cuadre.selected === '' || this.cuadre.caja === '' || this.cuadre.totalbs === 0.00) ? true : false
         },
         totalBs(){
             return parseFloat(this.cuadre.totalbs) === 0 ? '0.00' : (parseFloat(this.cuadre.totalbs)).toFixed(2)

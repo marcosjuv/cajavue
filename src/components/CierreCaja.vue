@@ -90,9 +90,9 @@ export default {
             },
             cierreCuadre:{
                 id:'',
-                fecha:'',
-                hora:'',
                 supervisor:'',
+                fecha:'',
+                // hora:'',
                 monto:'',
                 listcuadre:{}
             }
@@ -145,9 +145,9 @@ export default {
             this.setListCierres(this.cierreCuadre)
             this.cierreCuadre = {
                 id:'',
-                fecha:'',
-                hora:'',
                 supervisor:'',
+                fecha:'',
+                // hora:'',
                 monto:'',
                 listcuadre:{}
             }

@@ -13,16 +13,23 @@ export default{
 	    },		 
 	},
 	actions:{
-		cargarLocalStorageCierreCajas({commit}){
-	        if (localStorage.getItem('listCierres')) {
-	            commit('cargarCierreCajas', JSON.parse(localStorage.getItem('listCierres')))
-	            return
-	        }
-	        localStorage.setItem('listCierres', JSON.stringify([]))
+		async cargarLocalStorageCierreCajas({commit}){
+			try {
+				const res = await fetch('http://localhost:8000/api/getcierre');	
+				const db = await res.json();
+				commit ('cargarCierreCajas', db.data)
+			} catch (error) {
+				console.log(error)
+			}
+	        // if (localStorage.getItem('listCierres')) {
+	        //     commit('cargarCierreCajas', JSON.parse(localStorage.getItem('listCierres')))
+	        //     return
+	        // }
+	        // localStorage.setItem('listCierres', JSON.stringify([]))
 	    },
 	    async setListCierres({commit}, listCierres){
 			try {
-				const res = await fetch('http://localhost:8000/api/pruebacierre', {
+				const res = await fetch('http://localhost:8000/api/insertcierre', {
 					method:'POST',
 					headers:{
 						'Content-type':'application/json'

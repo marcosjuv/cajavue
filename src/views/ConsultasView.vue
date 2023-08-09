@@ -49,7 +49,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="item in buscarDocumento" :key="item.id">
+                            <tr v-for="item in listCierres" :key="item.id">
                                 <th scope="row">{{item.id}}</th>
                                 <td>{{item.fecha}}</td>
                                 <td>{{item.hora}}</td>
@@ -102,8 +102,7 @@ export default {
         ...mapState('cierrecajas',['listCierres']),
         buscarDocumento(){            
             return this.listCierres.filter(item => {
-                return item.id.toLowerCase().includes(this.buscar) ||
-                       item.fecha.includes(this.date)
+                return item.fecha.includes(this.date)
             })
         }
     }

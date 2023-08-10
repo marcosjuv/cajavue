@@ -41,7 +41,7 @@
                     <table class="table table-sm table-bordered table-hover table-striped">
                         <thead class="table-light">
                             <tr>
-                                <th>Documento</th>
+                                <th>#</th>
                                 <th>Fecha</th>
                                 <th>Hora</th>
                                 <th>Monto</th>
@@ -85,7 +85,7 @@
 	</div>
 </template>
 <script>
-import {mapActions, mapState} from 'vuex'
+import {mapState} from 'vuex'
 import DatePicker from '../components/DatePicker'
 export default {
 	name:'ConsultasView',
@@ -100,6 +100,7 @@ export default {
     },
     computed:{
         ...mapState('cierrecajas',['listCierres']),
+        ...mapState(['listcuadre']),
         buscarDocumento(){            
             return this.listCierres.filter(item => {
                 return item.fecha.includes(this.date)

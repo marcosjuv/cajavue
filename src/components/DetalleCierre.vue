@@ -164,7 +164,7 @@
 	        }
     	},
     	computed:{
-	        // ...mapState(['listcuadre']),
+	        ...mapState(['listcuadre']),
 	        ...mapState('cierrecajas',['listCierres']),
 	        details(){
 	        	const query = this.listCierres.find(item => item.id === this.$route.params.id)

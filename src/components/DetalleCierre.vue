@@ -168,7 +168,8 @@
 	        ...mapState('cierrecajas',['listCierres']),
 	        details(){
 	        	const query = this.listCierres.find(item => item.id === this.$route.params.id)
-	        	return query.listcuadre
+                console.log(query.listcuadre)
+	        	return query
 	        }
 	    }
 	}

@@ -105,6 +105,13 @@ export default {
             return this.listCierres.filter(item => {
                 return item.fecha.includes(this.date)
             })
+        },
+        test() {
+            const array1 = this.listcuadre
+            const array2 = this.listCierres
+            const array3 = array1.concat(array2)
+
+            return array3
         }
     }
 }

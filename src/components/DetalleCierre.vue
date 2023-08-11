@@ -37,7 +37,7 @@
                     <table class="table table-sm table-bordered table-hover table-striped">
                         <thead class="table-light">
                             <tr>
-                                <th>Documento</th>
+                                <th>#</th>
                                 <th>Fecha</th>
                                 <th>Hora</th>
                                 <th>Supervisor</th>
@@ -49,19 +49,19 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="item in details" :key="item.id">
+                            <tr v-for="item in detalles" :key="item.id">
                                 <th scope="row">{{item.id}}</th>
                                 <td>{{item.fecha}}</td>
                                 <td>{{item.hora}}</td>
                                 <td>{{item.supervisor}}</td>
                                 <td>{{item.cajero}}</td>
                                 <td>{{item.premium}}</td>
-                                <td>{{item.diferenciabs}}</td>
-                                <td>{{item.totalbs}}</td>
+                                <td>{{item.diferencia}}</td>
+                                <td>{{item.monto_total}}</td>
                                 <td>
                                     <div class="btn-group btn-group-sm d-flex justify-content-center" role="group" aria-label="Basic example">  <!-- d-flex justify-content-center -->
                                         <button  @click="getData(item.id)" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-list-ul"></i></button>
-                                        <button  type="button" class="btn btn-secondary"><i class="bi bi-printer"></i></button>
+                                        <button  @click="test($route.params.id)" type="button" class="btn btn-secondary"></button>
                                     </div>
                                 </td>
                             </tr>                            
@@ -121,23 +121,22 @@
     	data(){
     		return{
     			detalle:{
-	                id:'',
-	                fecha:'',
-	                hora:'',
 	                supervisor:'',
-	                cajero:'',
-	                caja:'',
-	                tasa1:0,
-	                efectivo:0,
-	                transferencia:0,
-	                punto:0,
-	                pendiente:0,
-	                cash:0,
-	                zelle:0,
-	                premium:0,
-	                totalbs:0,
-	                diferenciabs:0,
-	                montoTotal:0
+                    cajero:'',
+                    caja:'',
+                    is_rrss:false,      
+                    fecha:'',
+                    hora:'',
+                    tasa: 0,
+                    efectivo: 0,
+                    punto: 0,
+                    transferencia: 0,
+                    pendiente: 0,
+                    cash: 0,
+                    zelle: 0,
+                    premium: 0,
+                    monto_total: 0,
+                    diferencia: 0
 	            },
     		}
     	},
@@ -145,13 +144,16 @@
 	        ModalDetalle
 	    },
     	methods:{
+            test(id){
+                // return const res = this.detalles.find(item => item.cierre_id === id ? console.log(item.cierre_id) : console.log('no'))                
+            },
     		getData(id){
-	            const query = this.details.find(item => item.id === id)
+	            const query = this.detalles.find(item => item.id === id)
 	            this.detalle.id = query.id
 	            this.detalle.supervisor = query.supervisor
 	            this.detalle.cajero = query.cajero
 	            this.detalle.caja = query.caja
-	            this.detalle.tasa1 = query.tasa1
+	            this.detalle.tasa = query.tasa
 	            this.detalle.efectivo = query.efectivo
 	            this.detalle.transferencia = query.transferencia
 	            this.detalle.punto = query.punto
@@ -160,17 +162,16 @@
 	            this.detalle.zelle = query.zelle
 	            this.detalle.premium = query.premium
 	            this.detalle.totalbs = query.totalbs
-	            this.detalle.diferenciabs = query.diferenciabs
+	            this.detalle.diferencia = query.diferencia
 	        }
     	},
     	computed:{
-	        ...mapState(['listcuadre']),
+	        ...mapState('detalle',['detalles']),
 	        ...mapState('cierrecajas',['listCierres']),
-	        details(){
-	        	const query = this.listCierres.find(item => item.id === this.$route.params.id)
-                console.log(query.listcuadre)
-	        	return query
-	        }
+            filter(){
+                const res = this.detalles.find(item => item.cierre_id === id ? console.log(item.cierre_id) : console.log('no'))
+                return res
+            }
 	    }
 	}
 </script>

@@ -4,6 +4,7 @@ import empleados from '../modules/empleados'
 import cargos from '../modules/cargos'
 import cajas from '../modules/cajas'
 import cierrecajas from '../modules/cierrecajas'
+import detalle from '../modules/detalle'
 
 export default createStore({
 state: {
@@ -40,13 +41,6 @@ mutations: {
         state.listcuadre = state.listcuadre.filter(item => item.id !== payload)
         localStorage.setItem('listcuadre', JSON.stringify(state.listcuadre))
     },
-    getById(state, payload){
-        if (!state.listcuadre.find(item => item.id === payload)) {
-            router.push('/')
-            return
-        }
-        state.cuadre = state.listcuadre.find(item => item.id === payload)
-    },
     updateCuadre(state, payload){
         state.listcuadre = state.listcuadre.map(item => item.id === payload.id ? payload : item)
         router.push('/')
@@ -67,18 +61,9 @@ actions: {
     deleteCuadre({commit}, id){
         commit('eliminar', id)
     },
-    getId({commit}, id){
-        commit('getById', id)
-    },
     modificarCuadre({commit}, cuadre){
         commit('updateCuadre', cuadre)
-    } ,
-    calcular(){
-        if (this.cuadre.tasa1 === 0) {
-            alert('¡¡¡ Ingrese la tasa del dia !!!')
-            return
-        }
-    }  
+    }
 },
-modules: { empleados, cargos, cajas, cierrecajas }
+modules: { empleados, cargos, cajas, cierrecajas, detalle }
 })

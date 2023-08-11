@@ -83,7 +83,7 @@
                         </thead>
                         <tbody>
                             <tr v-for="item in listCajas" :key="item.id">
-                                <th scope="row"> {{ item.id }} </th>
+                                <th scope="row"> {{item.id }} </th>
                                 <td> {{item.caja}} </td>
                                 <td> {{item.descripcion}} </td>
                                 <td>

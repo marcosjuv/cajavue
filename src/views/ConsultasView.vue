@@ -57,7 +57,7 @@
                                 <td>
                                     <div class="btn-group btn-group-sm d-flex justify-content-center" role="group" aria-label="Basic example">  <!-- d-flex justify-content-center -->
                                         <router-link :to="{name:'detallecierre', params:{id:item.id}}" type="button" class="btn btn-primary"><i class="bi bi-eye"></i></router-link>
-                                        <button @click="prueba" type="button" class="btn btn-secondary"><i class="bi bi-printer"></i></button>
+                                        <button @click="test(item.id)" type="button" class="btn btn-secondary"><i class="bi bi-printer"></i></button>
                                     </div>
                                 </td>
                             </tr>                            
@@ -85,7 +85,7 @@
 	</div>
 </template>
 <script>
-import {mapState} from 'vuex'
+import {mapState, mapActions} from 'vuex'
 import DatePicker from '../components/DatePicker'
 export default {
 	name:'ConsultasView',
@@ -98,6 +98,14 @@ export default {
             fecha:''
         }
     },
+    methods: {
+        // ...mapActions(['getId']),
+        test(id){
+            // this.listCierres.filter(item => console.log(item))
+            console.log(id)
+            // console.log(this.listCierres)
+        },
+    },
     computed:{
         ...mapState('cierrecajas',['listCierres']),
         ...mapState(['listcuadre']),
@@ -105,13 +113,6 @@ export default {
             return this.listCierres.filter(item => {
                 return item.fecha.includes(this.date)
             })
-        },
-        test() {
-            const array1 = this.listcuadre
-            const array2 = this.listCierres
-            const array3 = array1.concat(array2)
-
-            return array3
         }
     }
 }

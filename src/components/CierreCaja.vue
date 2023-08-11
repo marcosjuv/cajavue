@@ -141,13 +141,11 @@ export default {
             this.cierreCuadre.monto = this.sumaTotal
             this.cierreCuadre.supervisor = this.listcuadre[0].supervisor
             this.cierreCuadre.listcuadre = this.listcuadre
-            console.log(this.cierreCuadre)
             this.setListCierres(this.cierreCuadre)
             this.cierreCuadre = {
                 id:'',
                 supervisor:'',
                 fecha:'',
-                // hora:'',
                 monto:'',
                 listcuadre:{}
             }

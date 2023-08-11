@@ -5,7 +5,7 @@
                 <div class="ms-2 me-auto">
                     <div class="fw-bold">Tasa:</div>
                 </div>
-                <h6>{{details.tasa1}}</h6>
+                <h6>{{details.tasa}}</h6>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-start">
                 <div class="ms-2 me-auto">
@@ -53,13 +53,13 @@
                 <div class="ms-2 me-auto">
                     <div class="fw-bold">Total:</div>
                 </div>
-                <h6>{{details.totalbs}}</h6>
+                <h6>{{details.monto_total}}</h6>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-start">
                 <div class="ms-2 me-auto">
                     <div class="fw-bold">Diferencia:</div>
                 </div>
-                <h6>{{details.diferenciabs}}</h6>
+                <h6>{{details.diferencia}}</h6>
             </li>
         </ol>
 	</div>

@@ -9,7 +9,7 @@ export default{
 	    },
 	    set(state, payload){
 	        state.listCierres.push(payload)
-	        localStorage.setItem('listCierres', JSON.stringify(state.listCierres))
+	        // localStorage.setItem('listCierres', JSON.stringify(state.listCierres))
 	    },		 
 	},
 	actions:{
@@ -41,8 +41,8 @@ export default{
 			} catch (error) {
 				console.log(error)
 			}
-	    	// localStorage.removeItem('listcuadre')
-	    	// location.reload()
+	    	localStorage.removeItem('listcuadre')
+	    	location.reload()
 	    }		
 	}
 }

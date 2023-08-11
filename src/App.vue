@@ -16,13 +16,15 @@ export default {
     ...mapActions(['cargarLocalStorage']),
     ...mapActions('empleados',['cargarLocalStorageEmpleados']),
     ...mapActions('cajas',['cargarLocalStorageCajas']),
-    ...mapActions('cierrecajas',['cargarLocalStorageCierreCajas'])
+    ...mapActions('cierrecajas',['cargarLocalStorageCierreCajas']),
+    ...mapActions('detalle',['cargarDetalles'])
   },
   created(){
     this.cargarLocalStorage()
     this.cargarLocalStorageEmpleados()
     this.cargarLocalStorageCajas()
     this.cargarLocalStorageCierreCajas()
+    this.cargarDetalles()
   }
 }
 </script>

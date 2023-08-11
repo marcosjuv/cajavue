@@ -21,8 +21,8 @@
 		    				<td>{{item.supervisor}}</td>
 		    				<td>{{item.cajero}}</td>
 		    				<td>{{item.caja}}</td>
-		    				<td>{{item.totalbs}}</td>
-		    				<td>{{item.diferenciabs}}</td>
+		    				<td>{{item.monto_total}}</td>
+		    				<td>{{item.diferencia}}</td>
 		    				<td>
 		    					<div class="btn-group btn-group-sm d-flex justify-content-center">
 		    						<button class="btn btn-sm btn-primary" @click="getData(item.id)" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-list-ul"></i></button>
@@ -84,8 +84,8 @@ export default {
                 cash:0,
                 zelle:0,
                 premium:0,
-                totalbs:0,
-                diferenciabs:0,
+                monto_total:0,
+                diferencia:0,
                 montoTotal:0
             },
             cierreCuadre:{
@@ -105,12 +105,12 @@ export default {
     	...mapState(['listcuadre']),
         sumaTotal(){
             let suma = 0
-            this.listcuadre.forEach(value => suma += value.totalbs)
+            this.listcuadre.forEach(value => suma += value.monto_total)
             return this.detalle.montoTotal = (parseFloat(suma)).toFixed(2)
         },
         setValueInput(){
             let suma = 0
-            this.listcuadre.forEach(value => suma += value.totalbs)
+            this.listcuadre.forEach(value => suma += value.monto_total)
             return this.cierreCuadre.monto = (parseFloat(suma)).toFixed(2)
         },
         lockCuadre(){
@@ -164,8 +164,8 @@ export default {
             this.detalle.cash = query.cash
             this.detalle.zelle = query.zelle
             this.detalle.premium = query.premium
-            this.detalle.totalbs = query.totalbs
-            this.detalle.diferenciabs = query.diferenciabs
+            this.detalle.monto_total = query.monto_total
+            this.detalle.diferencia = query.diferencia               
         }
     }
 }

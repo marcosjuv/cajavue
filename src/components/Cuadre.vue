@@ -122,12 +122,12 @@
                     <div class="card-body">
                         <div class="row row-cols-2">
                             <div class="col-md-6">
-                                <p class="fw-bold fs-6 my-0" for="totalbs">Total Bs.</p>
-                                <input id="totalbs" type="hidden" name="totalbs" v-model.number="cuadre.totalbs">
+                                <p class="fw-bold fs-6 my-0" for="monto_total">Total Bs.</p>
+                                <input id="monto_total" type="hidden" name="monto_total" v-model.number="cuadre.monto_total">
                                 <p class="fw-bold fs-4 my-0">{{ totalBs }}</p>
                                 <p class="fw-bold fs-6 my-0" for="diferencia">Diferencia Bs.</p>
-                                <input id="diferencia" type="hidden" name="diferencia" v-model.number="cuadre.diferenciabs">
-                                <p class="fw-bold fs-4 my-0" :class="setColorBs">{{ cuadre.diferenciabs === 0 ? '0.00' : cuadre.diferenciabs }}</p>
+                                <input id="diferencia" type="hidden" name="diferencia" v-model.number="cuadre.diferencia">
+                                <p class="fw-bold fs-4 my-0" :class="setColorBs">{{ cuadre.diferencia === 0 ? '0.00' : cuadre.diferencia }}</p>
                             </div>
                             <div class="col-md-6">
                                 <p class="fw-bold fs-6 my-0" for="cash">Total $.</p>
@@ -157,12 +157,12 @@ export default {
             }
             this.changeToDolar()
             this.diferencia()
-            this.cuadre.totalbs = Number(this.cuadre.efectivo) + Number(this.cuadre.punto) + Number(this.cuadre.transferencia) + Number(this.cuadre.pendiente) + Number(this.cuadre.cash) + Number(this.cuadre.zelle)
-            this.cuadre.totaldls = (parseFloat(this.cuadre.totalbs) / parseFloat(this.cuadre.tasa)).toFixed(2)
+            this.cuadre.monto_total = Number(this.cuadre.efectivo) + Number(this.cuadre.punto) + Number(this.cuadre.transferencia) + Number(this.cuadre.pendiente) + Number(this.cuadre.cash) + Number(this.cuadre.zelle)
+            this.cuadre.totaldls = (parseFloat(this.cuadre.monto_total) / parseFloat(this.cuadre.tasa)).toFixed(2)
         },
         diferencia(){
-            this.cuadre.diferenciabs = (this.cuadre.totalbs - this.cuadre.premium).toFixed(2)
-            this.cuadre.diferenciadls = (this.cuadre.diferenciabs / this.cuadre.tasa).toFixed(2)
+            this.cuadre.diferencia = (this.cuadre.monto_total - this.cuadre.premium).toFixed(2)
+            this.cuadre.diferenciadls = (this.cuadre.diferencia / this.cuadre.tasa).toFixed(2)
             this.cuadre.premiumdls = (this.cuadre.premium / this.cuadre.tasa).toFixed(2)
         },
         changeToDolar(){
@@ -179,7 +179,7 @@ export default {
         ...mapState('empleados',['listEmpleados']),
         ...mapState('cajas',['listCajas']),
         setColorBs(){
-            return this.cuadre.diferenciabs < 0 ? 'text-danger' : 'text-success'
+            return this.cuadre.diferencia < 0 ? 'text-danger' : 'text-success'
         },
         setColorDls(){
             return this.cuadre.diferenciadls < 0 ? 'text-danger' : 'text-success'
@@ -188,10 +188,10 @@ export default {
             return (this.cuadre.supervisor === '' || this.cuadre.selected === '' || this.cuadre.caja === '') ? 'is-invalid' : 'is-valid'
         },
         lockButton(){
-            return (this.cuadre.supervisor === '' || this.cuadre.selected === '' || this.cuadre.caja === '' || this.cuadre.totalbs === 0.00) ? true : false
+            return (this.cuadre.supervisor === '' || this.cuadre.selected === '' || this.cuadre.caja === '' || this.cuadre.monto_total === 0.00) ? true : false
         },
         totalBs(){
-            return parseFloat(this.cuadre.totalbs) === 0 ? '0.00' : (parseFloat(this.cuadre.totalbs)).toFixed(2)
+            return parseFloat(this.cuadre.monto_total) === 0 ? '0.00' : (parseFloat(this.cuadre.monto_total)).toFixed(2)
         },
         is_supervisor(){
             return this.listEmpleados.filter(item => item.is_supervisor === 1)

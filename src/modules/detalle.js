@@ -28,7 +28,14 @@ export default {
         set(state, payload){
             state.detalles.push(payload)
             // localStorage.setItem('detalles', JSON.stringify(state.detalles))
-        }
+        },
+        getById(state, payload){
+            // if (!state.detalles.find(item => item.id === payload)) {
+            //     router.push('/')
+            //     return
+            // }
+            state.cuadre = state.detalles.find(item => item.id === payload)
+        },
     },
     actions: {
         async cargarDetalles({commit}){
@@ -42,6 +49,9 @@ export default {
         },
         setcorte({commit}, corte){
             commit('set', corte)
-        }
+        },
+        getId({commit}, id){
+            commit('getById', id)
+        },
     },
 }

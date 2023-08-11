@@ -115,7 +115,7 @@
 </template>
 <script>
 	import ModalDetalle from '../components/ModalDetalle'
-	import {mapState} from 'vuex'
+	import {mapState, mapActions} from 'vuex'
 	export default {
     	name:'DetalleCierre',
     	data(){
@@ -144,9 +144,7 @@
 	        ModalDetalle
 	    },
     	methods:{
-            test(id){
-                // return const res = this.detalles.find(item => item.cierre_id === id ? console.log(item.cierre_id) : console.log('no'))                
-            },
+            ...mapActions('detalle',['getId']),
     		getData(id){
 	            const query = this.detalles.find(item => item.id === id)
 	            this.detalle.id = query.id
@@ -161,7 +159,7 @@
 	            this.detalle.cash = query.cash
 	            this.detalle.zelle = query.zelle
 	            this.detalle.premium = query.premium
-	            this.detalle.totalbs = query.totalbs
+	            this.detalle.monto_total = query.monto_total
 	            this.detalle.diferencia = query.diferencia
 	        }
     	},
@@ -172,6 +170,9 @@
                 const res = this.detalles.find(item => item.cierre_id === id ? console.log(item.cierre_id) : console.log('no'))
                 return res
             }
-	    }
+	    },
+        created(){
+            this.getId(this.$route.params.id)
+        }
 	}
 </script>

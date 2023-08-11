@@ -33,6 +33,21 @@ export default {
     components:{
         Cuadre
     },
+    data(){
+    return{
+        datos:{            
+            efectivodls: 0,
+            puntodls: 0,
+            transferenciadls: 0,
+            pendientedls: 0,
+            cashdls: 0,
+            zelledls: 0,
+            premiumdls: 0,
+            totaldls: 0,
+            diferenciadls: 0
+        }
+    }
+},
     computed:{
         ...mapState(['cuadre'])
     },

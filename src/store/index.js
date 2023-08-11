@@ -41,6 +41,13 @@ mutations: {
         state.listcuadre = state.listcuadre.filter(item => item.id !== payload)
         localStorage.setItem('listcuadre', JSON.stringify(state.listcuadre))
     },
+    getById(state, payload){
+        if (!state.listcuadre.find(item => item.id === payload)) {
+            router.push('/')
+            return
+        }
+        state.cuadre = state.listcuadre.find(item => item.id === payload)
+    },
     updateCuadre(state, payload){
         state.listcuadre = state.listcuadre.map(item => item.id === payload.id ? payload : item)
         router.push('/')
@@ -60,6 +67,9 @@ actions: {
     },
     deleteCuadre({commit}, id){
         commit('eliminar', id)
+    },
+    getId({commit}, id){
+        commit('getById', id)
     },
     modificarCuadre({commit}, cuadre){
         commit('updateCuadre', cuadre)

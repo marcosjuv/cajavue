@@ -41,8 +41,8 @@ export default{
 			} catch (error) {
 				console.log(error)
 			}
-	    	localStorage.removeItem('listcuadre')
-	    	location.reload()
+	    	// localStorage.removeItem('listcuadre')
+	    	// location.reload()
 	    }		
 	}
 }

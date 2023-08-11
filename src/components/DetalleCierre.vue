@@ -166,10 +166,10 @@
     	computed:{
 	        ...mapState('detalle',['detalles']),
 	        ...mapState('cierrecajas',['listCierres']),
-            filter(){
-                const res = this.detalles.find(item => item.cierre_id === id ? console.log(item.cierre_id) : console.log('no'))
-                return res
-            }
+            // getHora(){
+
+            //     return moment().format("HH")+":" +moment().format("mm");
+            // }
 	    },
         created(){
             this.getId(this.$route.params.id)

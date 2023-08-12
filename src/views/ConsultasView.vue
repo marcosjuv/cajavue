@@ -57,7 +57,7 @@
                                 <td>
                                     <div class="btn-group btn-group-sm d-flex justify-content-center" role="group" aria-label="Basic example">
                                         <router-link :to="{name:'detallecierre', params:{id:item.id}}" type="button" class="btn btn-primary"><i class="bi bi-eye"></i></router-link>
-                                        <button @click="test(item.id)" type="button" class="btn btn-secondary"><i class="bi bi-printer"></i></button>
+                                        <button type="button" class="btn btn-secondary"><i class="bi bi-printer"></i></button>
                                     </div>
                                 </td>
                             </tr>                            

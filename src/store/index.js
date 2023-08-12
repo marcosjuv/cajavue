@@ -10,6 +10,7 @@ export default createStore({
 state: {
     listcuadre:[],
     cuadre:{
+        id:'',
         supervisor:'',
         cajero:'',
         caja:'',

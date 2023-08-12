@@ -6,6 +6,7 @@ import ConsultasView from '../views/ConsultasView.vue'
 import ReportesView from '../views/ReportesView.vue'
 import CajasView from '../views/CajasView.vue'
 import DetalleCierre from '../components/DetalleCierre.vue'
+// import VueRouter from 'vue-router'
 
 const routes = [
   {
@@ -21,7 +22,12 @@ const routes = [
   {
     path: '/detallecierre/:id',
     name: 'detallecierre',
-    component: DetalleCierre
+    component: DetalleCierre,
+    props(route) {
+      return {
+        cierre_id: parseInt(route.params.id)
+      }
+    }
   },
   {
     path: '/editarcuadre/:id',

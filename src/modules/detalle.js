@@ -3,6 +3,7 @@ export default {
     state: {
         detalles:[],
         corte:{
+            id:'',
             supervisor:'',
             cajero:'',
             caja:'',
@@ -27,14 +28,9 @@ export default {
         },
         set(state, payload){
             state.detalles.push(payload)
-            // localStorage.setItem('detalles', JSON.stringify(state.detalles))
         },
         getById(state, payload){
-            // if (!state.detalles.find(item => item.id === payload)) {
-            //     router.push('/')
-            //     return
-            // }
-            state.cuadre = state.detalles.find(item => item.id === payload)
+            state.corte = state.detalles.filter(item => item.id === payload)
         },
     },
     actions: {

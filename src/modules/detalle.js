@@ -32,10 +32,7 @@ export default {
         },
         getById(state, payload){
             state.corte = state.detalles.filter(item => item.id === payload)
-        },
-        getDetails(state, payload){
-            state.corte = state.detalles.map(item => item.id === payload.id ? payload : item)
-        },
+        }
     },
     actions: {
         async cargarDetalles({commit}){            
@@ -52,14 +49,6 @@ export default {
         },
         getId({commit}, id){
             commit('getById', id)
-        },
-        async getDetalles({commit}, id){
-            try {
-                const res = await fetch(`http://localhost:8000/api/getdetalles/${id}`)
-                commit('getDetails', id)
-            } catch (error) {
-                console.log(error)                
-            }
-        },
+        }
     },
 }

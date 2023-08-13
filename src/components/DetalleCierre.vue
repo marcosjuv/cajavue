@@ -147,7 +147,7 @@
 	        ModalDetalle
 	    },
     	methods:{
-            ...mapActions('detalle',['getId','getDetalles']),
+            ...mapActions('detalle',['getId']),
     		getData(id){
 	            const query = this.detalles.find(item => item.id === id)
 	            this.detalle.id = query.id

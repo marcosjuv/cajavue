@@ -1,3 +1,4 @@
+import router from '../router'
 export default{
 	namespaced:true,
 	state:{
@@ -9,7 +10,6 @@ export default{
 	    },
 	    set(state, payload){
 	        state.listCierres.push(payload)
-	        // localStorage.setItem('listCierres', JSON.stringify(state.listCierres))
 	    },		 
 	},
 	actions:{
@@ -21,11 +21,6 @@ export default{
 			} catch (error) {
 				console.log(error)
 			}
-	        // if (localStorage.getItem('listCierres')) {
-	        //     commit('cargarCierreCajas', JSON.parse(localStorage.getItem('listCierres')))
-	        //     return
-	        // }
-	        // localStorage.setItem('listCierres', JSON.stringify([]))
 	    },
 	    async setListCierres({commit}, listCierres){
 			try {
@@ -42,7 +37,8 @@ export default{
 				console.log(error)
 			}
 	    	localStorage.removeItem('listcuadre')
-	    	location.reload()
+			router.push('/consultas')
+	    	// location.reload()
 	    }		
 	}
 }

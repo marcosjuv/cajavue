@@ -49,7 +49,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="item in filtro" :key="item.id">
+                            <tr v-for="item in getDetallesById" :key="item.id">
                                 <th scope="row">{{item.id}}</th>
                                 <td>{{item.fecha}}</td>
                                 <td>{{item.hora}}</td>
@@ -60,8 +60,8 @@
                                 <td>{{item.monto_total}}</td>
                                 <td>
                                     <div class="btn-group btn-group-sm d-flex justify-content-center" role="group" aria-label="Basic example">
-                                        <button  @click="getData(item.id)" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-list-ul"></i></button>
-                                        <button  type="button" class="btn btn-secondary"><i class="bi bi-printer"></i></button>
+                                        <button @click="getData(item.id)" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-list-ul"></i></button>
+                                        <button @click="test2" type="button" class="btn btn-secondary"><i class="bi bi-printer"></i></button>
                                     </div>
                                 </td>
                             </tr>                            
@@ -147,11 +147,7 @@
 	        ModalDetalle
 	    },
     	methods:{
-            ...mapActions('detalle',['getId']),
-            // filtro(){
-            //     console.log(this.cierre_id)
-            //     this.detalles.filter(item => item.cierre_id === this.cierre_id ? console.log(item) : 'No hay registros')
-            // },
+            ...mapActions('detalle',['getId','getDetalles']),
     		getData(id){
 	            const query = this.detalles.find(item => item.id === id)
 	            this.detalle.id = query.id
@@ -173,14 +169,12 @@
     	computed:{
 	        ...mapState('detalle',['detalles']),
 	        ...mapState('cierrecajas',['listCierres']),
-            filtro(){
-                // console.log(this.cierre_id)
-                return this.detalles.filter(item => item.cierre_id === this.cierre_id ? console.log(item) : 'No hay registros')
-            },
+            getDetallesById(){
+                const query = this.detalles.filter(item => item.cierre_id === this.cierre_id)
+                return query
+            },  
 	    },
         created(){
-            // this.filtro()
-            // console.log(this.detalles)
             this.getId(this.$route.params.id)
         }
 	}

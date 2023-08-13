@@ -42,6 +42,7 @@
                         <thead class="table-light">
                             <tr>
                                 <th>#</th>
+                                <th>Supervisor</th>
                                 <th>Fecha</th>
                                 <th>Hora</th>
                                 <th>Monto</th>
@@ -51,6 +52,7 @@
                         <tbody>
                             <tr v-for="item in listCierres" :key="item.id">
                                 <th scope="row">{{item.id}}</th>
+                                <td>{{item.supervisor}}</td>
                                 <td>{{item.fecha}}</td>
                                 <td>{{item.hora}}</td>
                                 <td>{{item.monto}}</td>
@@ -97,14 +99,6 @@ export default {
             buscar:'',
             fecha:''
         }
-    },
-    methods: {
-        // ...mapActions(['getId']),
-        test(id){
-            // this.listCierres.filter(item => console.log(item))
-            console.log(id)
-            // console.log(this.listCierres)
-        },
     },
     computed:{
         ...mapState('cierrecajas',['listCierres']),

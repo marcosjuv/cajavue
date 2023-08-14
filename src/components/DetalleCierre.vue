@@ -19,18 +19,18 @@
                 <div class="table-responsive-md">
                     <div class="row">
                         <div class="col-md-12 d-flex justify-content-between">
-                            <div class="col-md-3 mb-3 d-flex justify-content-center align-self-center">
-                                <span class="mt-2">Mostrar</span>
+                            <div class="col-md-3 mb-3 d-flex justify-content-center align-self-center">                                 
+                                <!-- <span class="mt-2">Mostrar</span>
                                 <select id="cant" class="form-select form-select-sm mx-2 p-2" aria-label="Default select example">
                                     <option selected>10</option>
                                     <option value="1">25</option>
                                     <option value="2">50</option>
                                     <option value="3">100</option>
                                 </select>
-                                <span class="mt-2" >registros</span> 
+                                <span class="mt-2" >registros</span>  -->
                             </div>
                             <div class="col-md-3 mb-3">
-                                <input class="form-control" type="text" name="buscar" placeholder="Buscar">
+                                <!-- <input class="form-control" type="text" name="buscar" placeholder="Buscar"> -->
                             </div>                            
                         </div>
                     </div>
@@ -66,13 +66,17 @@
                                 </td>
                             </tr>                            
                         </tbody>
+                        <tfoot>
+                            <td colspan="2"><h4 class="fw-bold">Monto total:</h4></td>
+                            <td><h4 class="fw-bold justify-content-start">{{ totalDetalle }}</h4></td>
+                        </tfoot>
                     </table>
                     <div class="row">
                         <div class="col-md-6">
-                            <span>Mostrando 1 a 10 de 3 registros</span>                       
+                            <!-- <span>Mostrando 1 a 10 de 3 registros</span> -->
                         </div>
                         <div class="col-md-6">
-                            <nav aria-label="Page navigation example">
+                            <!-- <nav aria-label="Page navigation example">
                                 <ul class="pagination justify-content-end">
                                     <li class="page-item"><a class="page-link" href="#">Previous</a></li>
                                     <li class="page-item"><a class="page-link" href="#">1</a></li>
@@ -80,8 +84,8 @@
                                     <li class="page-item"><a class="page-link" href="#">3</a></li>
                                     <li class="page-item"><a class="page-link" href="#">Next</a></li>
                                 </ul>
-                            </nav>                        
-                        </div>                        
+                            </nav> -->
+                        </div>
                     </div>
                 </div>
             </div>          
@@ -121,6 +125,7 @@
     	data(){
     		return{
     			detalle:{
+                    id:'',
 	                supervisor:'',
                     cajero:'',
                     caja:'',
@@ -137,7 +142,7 @@
                     premium: 0,
                     monto_total: 0,
                     diferencia: 0
-	            },
+	            }
     		}
     	},
         props: {
@@ -172,7 +177,13 @@
             getDetallesById(){
                 const query = this.detalles.filter(item => item.cierre_id === this.cierre_id)
                 return query
-            },  
+            },
+            totalDetalle(){
+                let total = 0
+                const res = this.detalles.filter(item => item.cierre_id === this.cierre_id)
+                res.forEach(element => total += element.monto_total);
+                return total
+            }  
 	    },
         created(){
             this.getId(this.$route.params.id)

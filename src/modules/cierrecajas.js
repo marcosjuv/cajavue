@@ -39,6 +39,16 @@ export default{
 	    	localStorage.removeItem('listcuadre')
 			router.push('/consultas')
 	    	// location.reload()
-	    }		
+	    },
+		async printDataCierre({commit}){
+			try {
+				const res = await fetch('http://localhost:8000/api/getallcierre');
+				const db = await res.json();
+				console.log(db.data)
+				commit (db.data)
+			} catch (error) {
+				console.log(error)
+			}
+		}	
 	}
 }

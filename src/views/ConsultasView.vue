@@ -31,7 +31,6 @@
                             </div>
                             <div class="col-md-3 mb-3">
                                 <DatePicker />
-                                <!-- <input class="form-control" type="date" v-model="fecha" name="fecha" placeholder="Buscar"> -->
                             </div>                            
                             <div class="col-md-3 mb-3">
                                 <input class="form-control" type="text" v-model="buscar" name="buscar" placeholder="Buscar">
@@ -59,7 +58,7 @@
                                 <td>
                                     <div class="btn-group btn-group-sm d-flex justify-content-center" role="group" aria-label="Basic example">
                                         <router-link :to="{name:'detallecierre', params:{id:item.id}}" type="button" class="btn btn-primary"><i class="bi bi-eye"></i></router-link>
-                                        <button type="button" class="btn btn-secondary"><i class="bi bi-printer"></i></button>
+                                        <button @click="printDataCierre" type="button" class="btn btn-secondary"><i class="bi bi-printer"></i></button>
                                     </div>
                                 </td>
                             </tr>                            
@@ -100,9 +99,14 @@ export default {
             fecha:''
         }
     },
+    methods: {
+        ...mapActions('cierrecajas',['printDataCierre']),
+        printCuadre(){
+            console.log(this.listCierres)
+        }
+    },
     computed:{
         ...mapState('cierrecajas',['listCierres']),
-        ...mapState(['listcuadre']),
         buscarDocumento(){            
             return this.listCierres.filter(item => {
                 return item.fecha.includes(this.date)

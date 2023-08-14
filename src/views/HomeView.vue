@@ -114,6 +114,7 @@ methods:{
             this.cuadre.fecha = this.formatDate(today)
             this.cuadre.id = uid()
             this.setCuadre(this.cuadre)
+            console.log(this.cuadre)
             this.cuadre = {
                 id: '',
                 fecha:'',

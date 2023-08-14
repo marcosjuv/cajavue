@@ -92,7 +92,7 @@ export default {
                 id:'',
                 supervisor:'',
                 fecha:'',
-                // hora:'',
+                hora:'',
                 monto:'',
                 listcuadre:{}
             }

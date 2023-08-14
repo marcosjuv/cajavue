@@ -34,7 +34,7 @@
                             <div class="col-md-4 mb-3">
                                 <label for="card_id" class="form-label">Cedula</label>
                                 <input id="card_id" class="form-control" :class="validationEmployee" type="text" name="card_id" v-model="empleado.card_id">
-                                <div class="invalid-feedback">card_id es requerido</div>
+                                <div class="invalid-feedback">Cedula es requerido</div>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="email" class="form-label">Correo</label>

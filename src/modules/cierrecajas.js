@@ -43,7 +43,7 @@ export default{
 		async printDataCierre({commit}){
 			try {
 				const res = await fetch('http://localhost:8000/api/getallcierre');
-				const db = await res.json();
+				const db = await res.json()
 				console.log(db.data)
 				commit (db.data)
 			} catch (error) {

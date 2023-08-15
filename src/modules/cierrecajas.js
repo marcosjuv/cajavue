@@ -40,9 +40,9 @@ export default{
 			router.push('/consultas')
 	    	// location.reload()
 	    },
-		async printDataCierre({commit}){
+		async printDataCierre({commit}, id){
 			try {
-				const res = await fetch('http://localhost:8000/api/getallcierre');
+				const res = await fetch(`http://localhost:8000/api/getallcierre/${id}`);
 				const db = await res.json()
 				console.log(db.data)
 				commit (db.data)

@@ -12,22 +12,15 @@
                     <router-link to="/" class="nav-link active">Home</router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link to="/empleados" class="nav-link">Empleados</router-link>
+                    <router-link to="/consultas" class="nav-link">Cierres</router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link to="/consultas" class="nav-link">Cierres</router-link>
+                    <router-link to="/empleados" class="nav-link">Empleados</router-link>
                 </li>
                 <li class="nav-item">
                     <router-link to="/cajas" class="nav-link">Cajas</router-link>
                 </li>
-                <li class="nav-item">
-                    <router-link to="/reportes" class="nav-link">Reportes</router-link>
-                </li>
             </ul>
-            <!-- <form id="search" class="d-flex" role="search">
-                <input id="buscar" name="buscarf" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form> -->
             </div>
         </div>
     </nav>

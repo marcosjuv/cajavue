@@ -150,11 +150,11 @@ methods:{
             const fecha = today.toLocaleDateString('es-ES')
             return fecha
         },
-        // getHora(){
-        //     const today = new Date()
-        //     const hora = today.toLocaleTimeString('es-ES')
-        //     return this.cuadre.hora = hora
-        // }
+        getHora(){
+            const today = new Date()
+            const hora = today.toLocaleTimeString('es-ES')
+            return this.cuadre.hora = hora
+        }
     }
 }
 </script>

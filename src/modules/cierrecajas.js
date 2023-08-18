@@ -2,14 +2,17 @@ import router from '../router'
 export default{
 	namespaced:true,
 	state:{
-		listCierres:[]
+		listCierres:[],
+		Cierres:{
+			id:'',
+		}
 	},
 	mutations:{
 		cargarCierreCajas(state, payload){
 	        state.listCierres = payload
 	    },
 	    set(state, payload){
-	        state.listCierres.push(payload)
+	        state.Cierres = state.listCierres.push(payload)
 	    },		 
 	},
 	actions:{
@@ -44,7 +47,6 @@ export default{
 			try {
 				const res = await fetch(`http://localhost:8000/api/getallcierre/${id}`);
 				const db = await res.json()
-				console.log(db.data)
 				commit (db.data)
 			} catch (error) {
 				console.log(error)

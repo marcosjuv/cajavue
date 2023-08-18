@@ -45,8 +45,16 @@ export default{
 	    },
 		async printDataCierre({commit}, id){
 			try {
-				const res = await fetch(`http://localhost:8000/api/getallcierre/${id}`);
+				const res = await fetch(`http://localhost:8000/api/getallcierre/${id}`,{
+					method:'GET',
+					headers:{
+						'Content-type':'application/json',
+						'Access-Control-Allow-Origin': '*'
+					},
+					// body:JSON.stringify(db.data)
+				});
 				const db = await res.json()
+				console.log(db)
 				commit (db.data)
 			} catch (error) {
 				console.log(error)

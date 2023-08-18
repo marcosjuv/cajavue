@@ -17,7 +17,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-4 d-flex justify-content-start">
-                        <span class="fw-bold fs-5">{{getFecha}} - {{getHora}}</span>
+                        <span class="fw-bold fs-5">{{getFecha}}</span>
                         
                     </div>
                 </div>
@@ -151,11 +151,11 @@ methods:{
             const fecha = today.toLocaleDateString('es-ES')
             return fecha
         },
-        getHora(){
-            const today = new Date()
-            const hora = today.toLocaleTimeString('es-ES')
-            return this.cuadre.hora = hora
-        }
+        // getHora(){
+        //     const today = new Date()
+        //     const hora = today.toLocaleTimeString('es-ES')
+        //     return this.cuadre.hora = hora
+        // }
     }
 }
 </script>

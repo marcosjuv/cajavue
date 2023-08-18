@@ -30,10 +30,10 @@
                                 <span class="mt-2" >registros</span> 
                             </div>
                             <div class="col-md-3 mb-3">
-                                <DatePicker />
+                                <input class="form-control" type="date" v-model="buscar" name="buscar" placeholder="Buscar">
                             </div>                            
                             <div class="col-md-3 mb-3">
-                                <input class="form-control" type="text" v-model="buscar" name="buscar" placeholder="Buscar">
+                                <input class="form-control" type="text" v-model="buscarpersona" name="buscar" placeholder="Buscar">
                             </div>
                         </div>
                     </div>
@@ -49,7 +49,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="item in listCierres" :key="item.id">
+                            <tr v-for="item in buscarDocumento" :key="item.id">
                                 <th scope="row">{{item.id}}</th>
                                 <td>{{item.supervisor}}</td>
                                 <td>{{item.fecha}}</td>
@@ -87,29 +87,23 @@
 </template>
 <script>
 import {mapState, mapActions} from 'vuex'
-import DatePicker from '../components/DatePicker'
 export default {
 	name:'ConsultasView',
-    components:{
-        DatePicker
-    },
     data(){
         return {
             buscar:'',
-            fecha:''
+            buscarpersona:''
         }
     },
     methods: {
-        ...mapActions('cierrecajas',['printDataCierre']),
-        printCuadre(){
-            console.log(this.listCierres)
-        }
+        ...mapActions('cierrecajas',['printDataCierre'])
     },
     computed:{
         ...mapState('cierrecajas',['listCierres']),
-        buscarDocumento(){            
+        buscarDocumento(){
             return this.listCierres.filter(item => {
-                return item.fecha.includes(this.date)
+                return item.fecha.includes(this.buscar) &&
+                item.supervisor.includes(this.buscarpersona)
             })
         }
     }

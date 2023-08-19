@@ -53,44 +53,42 @@ export default {
 	data(){
 	    return{
 	        pisoventa:{                
-	            tasa1:0,
-	            efectivo:0,
-	            transferencia:0,
-	            punto:0,
-	            pendiente:0,
-	            cash:0,
-	            zelle:0,
-	            premium:0,
-	            totalbs:0,
-	            diferenciabs:0,
-	            montoTotal:0
+	            tasa1:0.00,
+	            efectivo:0.00,
+	            transferencia:0.00,
+	            punto:0.00,
+	            pendiente:0.00,
+	            cash:0.00,
+	            zelle:0.00,
+	            premium:0.00,
+	            monto_total:0.00,
+	            diferencia:0.00,
+	            montoTotal:0.00
 	        }            
 	    }
-	},
-    methods:{
-    	
-    },
+	},   
     computed:{
     	...mapState(['listcuadre']),
     	...mapState('empleados',['listEmpleados']), // pendiente por borrarlo, no veo que funcion hace aqui???
     	sumaEfectivo(){
             let suma_efectivo = 0
             this.listcuadre.forEach(value => value.is_rrss === false ? suma_efectivo += value.efectivo : '0.00')
-            return this.pisoventa.efectivo = suma_efectivo
+            return this.pisoventa.efectivo = (suma_efectivo).toFixed(2)
         },        
         sumaPunto(){
             let suma_punto = 0
             this.listcuadre.forEach(value => value.is_rrss === false ? suma_punto += value.punto : '0.00')
-            return this.pisoventa.punto = suma_punto
+            return this.pisoventa.punto = (suma_punto).toFixed(2)
         },
 		sumaTransferencia(){
             let suma_transferencia = 0
             this.listcuadre.forEach(value => value.is_rrss === false ? suma_transferencia += value.transferencia : '0.00')
-            return this.pisoventa.transferencia = suma_transferencia
+            return this.pisoventa.transferencia = (suma_transferencia).toFixed(2)
 		},
 		sumaPendiente(){
             let suma_pendiente = 0
             this.listcuadre.forEach(value => value.is_rrss === false ? suma_pendiente += value.pendiente : '0.00')
+			
             return this.pisoventa.pendiente = suma_pendiente
         },
         setColorPendiente(){
@@ -99,30 +97,30 @@ export default {
         sumaCash(){
             let suma_cash = 0
             this.listcuadre.forEach(value => value.is_rrss === false ? suma_cash += value.cash : '0.00')
-            return this.pisoventa.cash = suma_cash
+            return this.pisoventa.cash = (suma_cash).toFixed(2)
         },
         sumaZelle(){
             let suma_zelle = 0
             this.listcuadre.forEach(value => value.is_rrss === false ? suma_zelle += value.zelle : '0.00')
-            return this.pisoventa.zelle = suma_zelle
+            return this.pisoventa.zelle = (suma_zelle).toFixed(2)
         },
         sumaPremium(){
             let suma_premium = 0
             this.listcuadre.forEach(value => value.is_rrss === false ? suma_premium += value.premium : '0.00')
-            return this.pisoventa.premium = suma_premium
+            return this.pisoventa.premium = (suma_premium).toFixed(2)
         },
         sumaDiferencia(){
         	let suma_diferencia = 0
-    		this.listcuadre.forEach(value => value.is_rrss === false ? suma_diferencia += parseFloat(value.diferenciabs) : '0.00')
-            return this.pisoventa.diferenciabs = (suma_diferencia).toFixed(2)
+    		this.listcuadre.forEach(value => value.is_rrss === false ? suma_diferencia += value.diferencia : 0.00)
+            return this.pisoventa.diferencia = suma_diferencia
         },
         setColorDiferencia(){
-            return this.pisoventa.diferenciabs < 0 ? 'badge bg-danger' : 'badge bg-primary'
+            return this.pisoventa.diferencia < 0 ? 'badge bg-danger' : 'badge bg-primary'
         },        
         sumaTotal(){
             let suma_total = 0
-            this.listcuadre.forEach(value => value.is_rrss === false ? suma_total += value.totalbs : '0.00')
-            return this.pisoventa.totalbs = suma_total
+            this.listcuadre.forEach(value => value.is_rrss === false ? suma_total += value.monto_total : '0.00')
+            return this.pisoventa.monto_total = (suma_total).toFixed(2)
         }
     }
 }

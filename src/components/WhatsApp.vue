@@ -62,8 +62,8 @@ export default {
                 cash:0,
                 zelle:0,
                 premium:0,
-                totalbs:0,
-                diferenciabs:0,
+                monto_total:0,
+                diferencia:0,
                 montoTotal:0
             }
         }
@@ -110,16 +110,17 @@ export default {
         },
         sumaDiferencia(){
             let suma_diferencia = 0
-            this.listcuadre.forEach(value => value.is_rrss === true ? suma_diferencia += parseFloat(value.diferenciabs) : '0.00')
-            return this.whatsapp.diferenciabs = (suma_diferencia).toFixed(2)
+            this.listcuadre.forEach(value => value.is_rrss === true ? suma_diferencia += value.diferencia : '0.00')
+            return this.whatsapp.diferencia = suma_diferencia
         },
         setColorDiferencia(){
-            return this.whatsapp.diferenciabs < 0 ? 'badge bg-danger' : 'badge bg-primary'
+            return this.whatsapp.diferencia < 0 ? 'badge bg-danger' : 'badge bg-primary'
         },       
         sumaTotal(){
             let suma_total = 0
-            this.listcuadre.forEach(value => value.is_rrss === true ? suma_total += value.totalbs : '0.00')
-            return this.whatsapp.totalbs = suma_total
+            console.log(this.listcuadre)
+            this.listcuadre.forEach(value => value.is_rrss === true ? suma_total += value.monto_total : '0.00')
+            return this.whatsapp.monto_total = suma_total
         }
     }
 }

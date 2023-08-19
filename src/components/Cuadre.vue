@@ -127,7 +127,7 @@
                                 <p class="fw-bold fs-4 my-0">{{ totalBs }}</p>
                                 <p class="fw-bold fs-6 my-0" for="diferencia">Diferencia Bs.</p>
                                 <input id="diferencia" type="hidden" name="diferencia" v-model.number="cuadre.diferencia">
-                                <p class="fw-bold fs-4 my-0" :class="setColorBs">{{ cuadre.diferencia === 0 ? '0.00' : cuadre.diferencia }}</p>
+                                <p class="fw-bold fs-4 my-0" :class="setColorBs">{{ cuadre.diferencia === 0 ? '0.00' : diff}}</p>
                             </div>
                             <div class="col-md-6">
                                 <p class="fw-bold fs-6 my-0" for="cash">Total $.</p>
@@ -158,10 +158,11 @@ export default {
             this.changeToDolar()
             this.diferencia()
             this.cuadre.monto_total = Number(this.cuadre.efectivo) + Number(this.cuadre.punto) + Number(this.cuadre.transferencia) + Number(this.cuadre.pendiente) + Number(this.cuadre.cash) + Number(this.cuadre.zelle)
-            this.cuadre.totaldls = (parseFloat(this.cuadre.monto_total) / parseFloat(this.cuadre.tasa)).toFixed(2)
+            this.cuadre.totaldls = (Number(this.cuadre.monto_total) / Number(this.cuadre.tasa)).toFixed(2)
         },
         diferencia(){
-            this.cuadre.diferencia = (this.cuadre.monto_total - this.cuadre.premium).toFixed(2)
+            this.cuadre.diferencia = this.cuadre.monto_total - this.cuadre.premium
+            console.log(this.cuadre.diferencia)
             this.cuadre.diferenciadls = (this.cuadre.diferencia / this.cuadre.tasa).toFixed(2)
             this.cuadre.premiumdls = (this.cuadre.premium / this.cuadre.tasa).toFixed(2)
         },
@@ -191,13 +192,16 @@ export default {
             return (this.cuadre.supervisor === '' || this.cuadre.selected === '' || this.cuadre.caja === '' || this.cuadre.monto_total === 0.00) ? true : false
         },
         totalBs(){
-            return parseFloat(this.cuadre.monto_total) === 0 ? '0.00' : (parseFloat(this.cuadre.monto_total)).toFixed(2)
+            return Number(this.cuadre.monto_total) === 0 ? '0.00' : (Number(this.cuadre.monto_total)).toFixed(2)
         },
         is_supervisor(){
             return this.listEmpleados.filter(item => item.is_supervisor === 1)
         },
         is_cajero(){
             return this.listEmpleados.filter(item => item.is_supervisor === 0)
+        },
+        diff(){
+            return (this.cuadre.diferencia).toFixed(2)
         },
 
         // --------------------------------  Campos ---------------------------------------//

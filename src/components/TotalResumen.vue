@@ -62,8 +62,8 @@ export default {
                 cash:0,
                 zelle:0,
                 premium:0,
-                totalbs:0,
-                diferenciabs:0,
+                monto_total:0,
+                diferencia:0,
                 montoTotal:0
             } 
         }
@@ -110,16 +110,16 @@ export default {
         },
         sumaDiferencia(){
             let suma_diferencia = 0
-            this.listcuadre.forEach(value => suma_diferencia += parseFloat(value.diferenciabs))
-            return this.totalresumen.diferenciabs = (suma_diferencia).toFixed(2)
+            this.listcuadre.forEach(value => suma_diferencia += parseFloat(value.diferencia))
+            return this.totalresumen.diferencia = (suma_diferencia).toFixed(2)
         },
         setColorDiferencia(){
-            return this.totalresumen.diferenciabs < 0 ? 'badge bg-danger' : 'badge bg-primary'
+            return this.totalresumen.diferencia < 0 ? 'badge bg-danger' : 'badge bg-primary'
         },        
         sumaTotal(){
             let suma_total = 0
-            this.listcuadre.forEach(value => suma_total += value.totalbs)
-            return this.totalresumen.totalbs = suma_total
+            this.listcuadre.forEach(value => suma_total += value.monto_total)
+            return this.totalresumen.monto_total = suma_total
         }
     }
 }

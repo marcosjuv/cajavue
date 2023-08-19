@@ -70,16 +70,16 @@ data(){
             cajero:'',
             caja:'',
             is_rrss:false,          
-            tasa: 0,
-            efectivo: 0,
-            punto: 0,
-            transferencia: 0,
-            pendiente: 0,
-            cash: 0,
-            zelle: 0,
-            premium: 0,
-            monto_total: 0,
-            diferencia: 0,
+            tasa: 0.00,
+            efectivo: 0.00,
+            punto: 0.00,
+            transferencia: 0.00,
+            pendiente: 0.00,
+            cash: 0.00,
+            zelle: 0.00,
+            premium: 0.00,
+            monto_total: 0.00,
+            diferencia: 0.00,
             efectivodls: 0,
             puntodls: 0,
             transferenciadls: 0,
@@ -108,29 +108,35 @@ methods:{
 
             return [year, month, day].join('-');
         },
+        gethour(){
+            const today = new Date()
+            const hora = today.toLocaleTimeString('es-ES')
+            return this.cuadre.hora = hora
+        },
         cuadreCaja(){
             const uid = new ShortUniqueId({length: 10})
             const today = new Date()
             this.cuadre.fecha = this.formatDate(today)
+            this.cuadre.hora = this.gethour()
             this.cuadre.id = uid()
             this.setCuadre(this.cuadre)
             this.cuadre = {
-                id: '',
+                // id: '',
                 fecha:'',
                 hora:'',
                 supervisor: this.cuadre.supervisor,
                 cajero: this.cuadre.cajero,
                 caja: this.cuadre.caja,
                 tasa: this.cuadre.tasa,
-                efectivo: '',
-                punto: '',
-                transferencia: '',
-                pendiente: '',
-                cash: '',
-                zelle: '',
-                premium: '',
-                monto_total: 0,
-                diferencia: 0,
+                efectivo: 0.00,
+                punto: 0.00,
+                transferencia: 0.00,
+                pendiente: 0.00,
+                cash: 0.00,
+                zelle: 0.00,
+                premium: 0.00,
+                monto_total: 0.00,
+                diferencia: 0.00,
                 efectivodls: 0,
                 puntodls: 0,
                 transferenciadls: 0,

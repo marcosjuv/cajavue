@@ -21,7 +21,7 @@
 		    				<td>{{item.supervisor}}</td>
 		    				<td>{{item.cajero}}</td>
 		    				<td>{{item.caja}}</td>
-		    				<td>{{item.monto_total}}</td>
+		    				<td>{{(item.monto_total).toFixed(2)}}</td>
 		    				<td>{{item.diferencia}}</td>
 		    				<td>
 		    					<div class="btn-group btn-group-sm d-flex justify-content-center">
@@ -76,17 +76,17 @@ export default {
                 supervisor:'',
                 cajero:'',
                 caja:'',
-                tasa:0,
-                efectivo:0,
-                transferencia:0,
-                punto:0,
-                pendiente:0,
-                cash:0,
-                zelle:0,
-                premium:0,
-                monto_total:0,
-                diferencia:0,
-                montoTotal:0
+                tasa:0.00,
+                efectivo:0.00,
+                transferencia:0.00,
+                punto:0.00,
+                pendiente:0.00,
+                cash:0.00,
+                zelle:0.00,
+                premium:0.00,
+                monto_total:0.00,
+                diferencia:0.00,
+                montoTotal:0.00
             },
             cierreCuadre:{
                 id:'',
@@ -106,12 +106,12 @@ export default {
         sumaTotal(){
             let suma = 0
             this.listcuadre.forEach(value => suma += value.monto_total)
-            return this.detalle.montoTotal = (parseFloat(suma)).toFixed(2)
+            return this.detalle.montoTotal = (Number(suma)).toFixed(2)
         },
         setValueInput(){
             let suma = 0
             this.listcuadre.forEach(value => suma += value.monto_total)
-            return this.cierreCuadre.monto = (parseFloat(suma)).toFixed(2)
+            return this.cierreCuadre.monto = (Number(suma)).toFixed(2)
         },
         lockCuadre(){
             return this.listcuadre.length === 0 ? true : false

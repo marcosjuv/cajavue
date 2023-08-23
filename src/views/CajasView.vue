@@ -38,7 +38,8 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <div v-if="caja.id >= 0 || caja.id === 'null'">
+                    {{caja.is_rrss}}
+                    <div v-if="caja.id === ''">
                         <div class="d-grid">
                             <button class="btn btn-primary" @click="insertCaja" :disabled="validacionCaja" type="button"><i class="bi bi-database-fill-add"></i> Guardar caja</button>
                         </div>                            
@@ -123,7 +124,7 @@
         data(){
             return{
                 caja:{
-                    id: 0,
+                    id: '',
                     caja:'',
                     descripcion:'',
                     is_rrss:false
@@ -134,10 +135,10 @@
         methods:{
             ...mapActions('cajas',['setCaja','modificarCaja','deleteCaja']),
             insertCaja(){
-                this.setCaja(this.caja) 
-                // this.caja.id++               
+                // this.setCaja(this.caja) 
+                console.log('estas haciendo insert')
                 this.caja = {
-                    id: this.caja.id,
+                    id: '',
                     caja:'',
                     descripcion:'',
                     is_rrss:false
@@ -145,6 +146,7 @@
             },
             getForm(id){            
                 const res = this.listCajas.find(item => item.id === id)
+                console.log(res.is_rrss)
                 this.caja = {
                     id:res.id,
                     caja:res.caja,
@@ -155,10 +157,10 @@
             updateCaja(){
                 this.modificarCaja(this.caja)
                 this.caja = {
-                    // id: 0,
+                    id: '',
                     caja:'',
                     descripcion:'',
-                    is_rrss:false
+                    is_rrss: false
                 }
             }
         },
@@ -173,6 +175,9 @@
                     caja.id.includes(this.buscar) ||
                     caja.descripcion.toLowerCase().includes(this.buscar)
                 })
+            },
+            Is_rrss(){
+                return this.is_rrss === 0 ? false : true                
             }
         }
 	}

@@ -1,4 +1,5 @@
 <template>
+<div>    
     <div>
         <div class="row">
             <div class="col-md-8">
@@ -141,6 +142,7 @@
             </div>
         </div>
     </div>
+</div>
 </template>
 <script>
 import {mapState} from 'vuex'

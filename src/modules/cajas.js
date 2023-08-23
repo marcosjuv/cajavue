@@ -6,7 +6,7 @@ export default{
 	        id:'',
 	        caja:'',
 	        descripcion:'',
-	        is_rrss:false
+	        is_rrss:0
 	    }
 	},
 	mutations:{
@@ -18,7 +18,7 @@ export default{
         	// localStorage.setItem('listCajas', JSON.stringify(state.listCajas))
 	    },	    
 	    updateCajas(state, payload){
-	        state.listCajas = state.listCajas.map(item => item.id === payload.id ? payload : item)
+	        state.caja = state.listCajas.map(item => item.id === payload.id ? payload : item)
 	        // localStorage.setItem('listCajas', JSON.stringify(state.listCajas))
 	    },
 	    eliminarCajas(state, payload){

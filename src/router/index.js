@@ -3,7 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import EmpleadosView from '../views/EmpleadosView.vue'
 import EditarCuadreView from '../views/EditarCuadreView.vue'
 import ConsultasView from '../views/ConsultasView.vue'
-import ReportesView from '../views/ReportesView.vue'
+// import ReportesView from '../views/ReportesView.vue'
 import CajasView from '../views/CajasView.vue'
 import DetalleCierre from '../components/DetalleCierre.vue'
 // import VueRouter from 'vue-router'
@@ -43,11 +43,6 @@ const routes = [
     path: '/cajas',
     name: 'Cajas',
     component: CajasView
-  },
-  {
-    path: '/reportes',
-    name: 'Reportes',
-    component: ReportesView
   }
 ]
 

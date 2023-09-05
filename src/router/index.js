@@ -3,10 +3,8 @@ import HomeView from '../views/HomeView.vue'
 import EmpleadosView from '../views/EmpleadosView.vue'
 import EditarCuadreView from '../views/EditarCuadreView.vue'
 import ConsultasView from '../views/ConsultasView.vue'
-// import ReportesView from '../views/ReportesView.vue'
 import CajasView from '../views/CajasView.vue'
 import DetalleCierre from '../components/DetalleCierre.vue'
-// import VueRouter from 'vue-router'
 
 const routes = [
   {
@@ -47,7 +45,8 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  // history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory(),
   routes
 })
 

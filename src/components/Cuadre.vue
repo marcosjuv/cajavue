@@ -164,7 +164,6 @@ export default {
         },
         diferencia(){
             this.cuadre.diferencia = this.cuadre.monto_total - this.cuadre.premium
-            console.log(this.cuadre.diferencia)
             this.cuadre.diferenciadls = (this.cuadre.diferencia / this.cuadre.tasa).toFixed(2)
             this.cuadre.premiumdls = (this.cuadre.premium / this.cuadre.tasa).toFixed(2)
         },

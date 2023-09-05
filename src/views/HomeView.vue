@@ -123,7 +123,7 @@ methods:{
             this.cuadre.id = uid()
             this.setCuadre(this.cuadre)
             this.cuadre = {
-                // id: '',
+                id: '',
                 fecha:'',
                 hora:'',
                 supervisor: this.cuadre.supervisor,

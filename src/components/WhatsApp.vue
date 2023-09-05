@@ -118,7 +118,7 @@ export default {
         },       
         sumaTotal(){
             let suma_total = 0
-            console.log(this.listcuadre)
+            // console.log(this.listcuadre)
             this.listcuadre.forEach(value => value.is_rrss === true ? suma_total += value.monto_total : '0.00')
             return this.whatsapp.monto_total = suma_total
         }

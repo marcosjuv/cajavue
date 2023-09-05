@@ -35,31 +35,31 @@
                                 <h1 class="fw-bold">Bs.</h1>
                                 <div class="form-group">
                                     <label  class="fw-bold" for="efectivo">Efectivo:</label>
-                                    <input id="efectivo" type="number" class="form-control" v-model.number="cuadre.efectivo" @keyup="calcular">
+                                    <input id="efectivo" type="text" class="form-control" v-model.number="cuadre.efectivo" @keyup="calcular" @keypress="isDecimal">
                                 </div>
                                 <div class="form-group">
                                     <label  class="fw-bold" for="punto">Punto:</label><br>
-                                    <input id="punto" type="number" class="form-control" v-model.number="cuadre.punto" @keyup="calcular">                                    
+                                    <input id="punto" type="text" class="form-control" v-model.number="cuadre.punto" @keyup="calcular" @keypress="isDecimal">                                    
                                 </div>
                                 <div class="form-group">
                                     <label  class="fw-bold" for="transferencia">Transferencia:</label><br>
-                                    <input id="transferencia" type="number" class="form-control" v-model.number="cuadre.transferencia" @keyup="calcular">                                    
+                                    <input id="transferencia" type="text" class="form-control" v-model.number="cuadre.transferencia" @keyup="calcular" @keypress="isDecimal">                                    
                                 </div>
                                 <div class="form-group">
                                     <label  class="fw-bold" for="pendiente">Pendiente:</label><br>
-                                    <input id="pendiente" type="number" class="form-control" v-model.number="cuadre.pendiente" @keyup="calcular">                                    
+                                    <input id="pendiente" type="text" class="form-control" v-model.number="cuadre.pendiente" @keyup="calcular" @keypress="isDecimal">                                    
                                 </div>
                                 <div class="form-group">
                                     <label  class="fw-bold" for="cash">Efectivo $:</label><br>
-                                    <input id="cash" type="number" class="form-control" v-model.number="cuadre.cash" @keyup="calcular">                                    
+                                    <input id="cash" type="text" class="form-control" v-model.number="cuadre.cash" @keyup="calcular" @keypress="isDecimal">                                    
                                 </div>
                                 <div class="form-group">
                                     <label  class="fw-bold" for="zelle">Zelle:</label><br>
-                                    <input id="zelle" type="number" class="form-control" v-model.number="cuadre.zelle" @keyup="calcular">                                    
+                                    <input id="zelle" type="text" class="form-control" v-model.number="cuadre.zelle" @keyup="calcular" @keypress="isDecimal">                                    
                                 </div>
                                 <div class="form-group">
                                     <label  class="fw-bold" for="premium">Premium:</label><br>
-                                    <input id="premium" type="number" class="form-control" v-model.number="cuadre.premium" @keyup="calcular">                                    
+                                    <input id="premium" type="text" class="form-control" v-model.number="cuadre.premium" @keyup="calcular" @keypress="isDecimal">                                    
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -128,7 +128,7 @@
                                 <p class="fw-bold fs-4 my-0">{{ totalBs }}</p>
                                 <p class="fw-bold fs-6 my-0" for="diferencia">Diferencia Bs.</p>
                                 <input id="diferencia" type="hidden" name="diferencia" v-model.number="cuadre.diferencia">
-                                <p class="fw-bold fs-4 my-0" :class="setColorBs">{{ cuadre.diferencia === 0 ? '0.00' : diff}}</p>
+                                <p class="fw-bold fs-4 my-0" :class="setColorBs">{{ cuadre.diferencia === 0 ? '0.00' : Number.parseFloat(cuadre.diferencia).toFixed(2) }}</p>
                             </div>
                             <div class="col-md-6">
                                 <p class="fw-bold fs-6 my-0" for="cash">Total $.</p>
@@ -176,6 +176,15 @@ export default {
             this.cuadre.cashdls = (this.cuadre.cash / this.cuadre.tasa).toFixed(2),
             this.cuadre.zelledls = (this.cuadre.zelle / this.cuadre.tasa).toFixed(2),
             this.cuadre.premiumdls = (this.cuadre.premium / this.cuadre.tasa).toFixed(2)
+        },
+        isDecimal(evt){
+            evt = evt ? evt : window.event;
+            var charCode = evt.which ? evt.which : evt.keyCode;
+            if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode !== 46) {
+                evt.preventDefault();
+            } else {
+                return true;
+            }
         }
     },
     computed:{
@@ -201,10 +210,7 @@ export default {
         },
         is_cajero(){
             return this.listEmpleados.filter(item => item.is_supervisor === 0)
-        },
-        diff(){
-            return (this.cuadre.diferencia).toFixed(2)
-        },
+        },        
 
         // --------------------------------  Campos ---------------------------------------//
 

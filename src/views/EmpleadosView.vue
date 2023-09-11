@@ -79,89 +79,18 @@
         <div class="card my-3">
             <div class="card-header"><i class="bi bi-list-ol"></i> Lista de empleados</div>
             <div class="card-body">
-                <div class="table-responsive-md">
-                    <div class="row">
-                        <div class="col-md-12 d-flex justify-content-between">
-                            <div class="col-md-3 mb-3 d-flex justify-content-center align-self-center">
-                                <span class="mt-2">Mostrar</span>
-                                <select id="mostrar" class="form-select form-select-sm mx-2 p-2" aria-label="Default select example">
-                                    <option selected>10</option>
-                                    <option value="1">25</option>
-                                    <option value="2">50</option>
-                                    <option value="3">100</option>
-                                </select>
-                                <span class="mt-2" >registros</span> 
-                            </div>
-                            <div class="col-md-3 mb-3">
-                                <input class="form-control" type="text" name="buscar" placeholder="Buscar">
-                            </div>                            
-                        </div>
-                    </div>
-                    <table class="table table-sm table-bordered table-hover table-striped">
-                        <thead class="table-light">
-                            <tr>
-                                <th>#</th>
-                                <th>Nombre</th>
-                                <th>Apellido</th>
-                                <th>Cedula</th>
-                                <th>Cargo</th>
-                                <th>Area de cargo</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- <div class="col-md-12 d-flex justify-content-center align-self-center" v-if="buscarcard_id.length === 0"><p class="text-center">No hay registros</p></div> -->
-                            <tr v-for="item in listEmpleados" :key="item.id">
-                            <th scope="row">{{ item.id }}</th>
-                                <td>{{ item.name }}</td>
-                                <td>{{ item.lastname }}</td>
-                                <td>{{ item.card_id }}</td>
-                                <td v-if="item.is_supervisor">
-                                    <td>Supervisor</td>
-                                </td>
-                                <td v-else>
-                                    <td>Cajero</td>
-                                </td>
-                                <td v-if="item.is_rrss">
-                                    <td>Whatsapp</td>                                    
-                                </td>
-                                <td v-else>
-                                    <td>Piso de venta</td>                                    
-                                </td>
-                                <td>
-                                    <div class="btn-group btn-group-sm d-flex justify-content-center" role="group" aria-label="Basic example">
-                                        <button @click="getForm(item.id)" type="button" class="btn btn-warning"><i class="bi bi-pencil-square"></i></button>
-                                        <button @click="deleteEmpleados(item.id)" type="button" class="btn btn-danger"><i class="bi bi-trash3"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <span>Mostrando 1 a 10 de 3 registros</span>                       
-                        </div>
-                        <div class="col-md-6">
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination justify-content-end">
-                                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                                </ul>
-                            </nav>                        
-                        </div>                        
-                    </div>
-                </div>
+                <TablaEmpleados/>
+               
             </div>          
         </div>
     </div>
 </template>
 <script>
 import {mapActions, mapState} from 'vuex'
+import TablaEmpleados from '../components/TablaEmpleados'
 export default {
     name:'Empleados',
+    components:{TablaEmpleados},
     data(){
         return{
             empleado:{
@@ -174,14 +103,11 @@ export default {
                 is_supervisor:false,
                 is_rrss:false
             },
-            buscar:''
         }
     },
     methods:{
         ...mapActions('empleados',['setEmpleados','deleteEmpleados','modificarEmpleados']),
         insertEmpleado(){ 
-            // const uid = new ShortUniqueId({length: 10})
-            // this.empleado.id = uid()
             this.setEmpleados(this.empleado)
             this.empleado = {
                 id:'',
@@ -229,15 +155,7 @@ export default {
         },
         lockBtn(){
             return this.empleado.name === '' || this.empleado.lastname === '' || this.empleado.card_id === '' ? true : false
-        },
-        // buscarCedula(){
-        //     return this.listEmpleados.filter(item => {
-        //         return item.nombre.toLowerCase().includes(this.buscar) ||
-        //         item.apellido.toLowerCase().includes(this.buscar) ||
-        //         item.email.toLowerCase().includes(this.buscar) ||
-        //         item.cedula.includes(this.buscar)
-        //     })
-        // },
+        }
     }
 }
 </script>

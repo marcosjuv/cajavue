@@ -116,11 +116,11 @@ methods:{
             return this.cuadre.hora = hora
         },
         cuadreCaja(){
-            const uid = new ShortUniqueId({length: 10})
             const today = new Date()
             this.cuadre.fecha = this.formatDate(today)
             this.cuadre.hora = this.gethour()
-            this.cuadre.id = uid()
+            // this.cuadre.id = ++this.cuadre.id
+            this.cuadre.id = Date.now().toString()
             this.setCuadre(this.cuadre)
             this.cuadre = {
                 id: '',

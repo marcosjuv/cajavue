@@ -22,7 +22,7 @@
 		    				<td>{{item.cajero}}</td>
 		    				<td>{{item.caja}}</td>
 		    				<td>{{(item.monto_total).toFixed(2)}}</td>
-		    				<td>{{item.diferencia}}</td>
+		    				<td>{{(item.diferencia).toFixed(2)}}</td>
 		    				<td>
 		    					<div class="btn-group btn-group-sm d-flex justify-content-center">
 		    						<button class="btn btn-sm btn-primary" @click="getData(item.id)" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-list-ul"></i></button>

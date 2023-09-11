@@ -41,7 +41,6 @@ export default{
 			}
 	    	localStorage.removeItem('listcuadre')
 			router.push('/consultas')
-	    	// location.reload()
 	    },
 		async printDataCierre({commit}, id){
 			try {
@@ -51,10 +50,8 @@ export default{
 						'Content-type':'application/json',
 						'Access-Control-Allow-Origin': '*'
 					},
-					// body:JSON.stringify(db.data)
 				});
 				const db = await res.json()
-				console.log(db)
 				commit (db.data)
 			} catch (error) {
 				console.log(error)

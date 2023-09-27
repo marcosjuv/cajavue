@@ -2,7 +2,6 @@ export default{
 	namespaced:true,
 	state:{
 		listEmpleados:[],
-		filtroEmpleados:[],
 	    empleado:{
 	        id:'',
 	        name:'',
@@ -37,6 +36,25 @@ export default{
 				const res = await fetch('http://localhost:8000/api/getusers');	
 				const db = await res.json();
 				commit ('cargarEmpleados', db.data)				
+			} catch (error) {
+				console.log(error)
+			}
+	    },
+		async employee({commit}){
+			try {
+				const res = await fetch('http://localhost:8000/api/getusers');	
+				const db = await res.json();
+				commit ('cargarEmpleados', db.data)				
+			} catch (error) {
+				console.log(error)
+			}
+	    },
+		async links({commit}){
+			try {
+				const res = await fetch('http://localhost:8000/api/getusers');	
+				const db = await res.json();
+				commit ('cargarEmpleados', db.links.first)		
+				console.log(db.links)
 			} catch (error) {
 				console.log(error)
 			}

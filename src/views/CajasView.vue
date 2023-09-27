@@ -55,10 +55,11 @@
         <div class="card my-3">
             <div class="card-header"><i class="bi bi-list-ol"></i> Lista de cajas</div>
             <div class="card-body">
-                <div class="table-responsive-md">
+                <TablaCajas />
+                <!-- <div class="table-responsive-md">
                     <div class="row">
                         <div class="col-md-12 d-flex justify-content-between">
-                            <!-- <div class="col-md-3 mb-3 d-flex justify-content-center align-self-center">
+                             <div class="col-md-3 mb-3 d-flex justify-content-center align-self-center">
                                 <span class="mt-2">Mostrar</span>
                                 <select id="cant" class="form-select form-select-sm mx-2 p-2" aria-label="Default select example">
                                     <option selected>10</option>
@@ -67,7 +68,7 @@
                                     <option value="3">100</option>
                                 </select>
                                 <span class="mt-2" >registros</span> 
-                            </div> -->
+                            </div> 
                             <div class="col-md-3 mb-3">
                                 <input class="form-control" type="text" name="buscar" v-model="buscar" placeholder="Buscar">
                             </div>                            
@@ -112,15 +113,17 @@
                             </nav>                        
                         </div>                        
                     </div>
-                </div>
+                </div> -->
             </div>          
         </div>
 	</div>
 </template>
 <script>
     import {mapActions, mapState} from 'vuex'
+    import TablaCajas from '../components/TablaCajas'
 	export default {
 		name: 'CajasView',
+        components:{TablaCajas},
         data(){
             return{
                 caja:{
@@ -146,7 +149,6 @@
             },
             getForm(id){            
                 const res = this.listCajas.find(item => item.id === id)
-                console.log(res.is_rrss)
                 this.caja = {
                     id:res.id,
                     caja:res.caja,

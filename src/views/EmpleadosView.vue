@@ -168,7 +168,7 @@ export default {
         }
     },
     methods:{
-        ...mapActions('empleados',['setEmpleados','deleteEmpleados','modificarEmpleados','links','employee']),
+        ...mapActions('empleados',['setEmpleados','deleteEmpleados','modificarEmpleados']),
         insertEmpleado(){ 
             this.setEmpleados(this.empleado)
             this.empleado = {
@@ -210,7 +210,7 @@ export default {
                 is_rrss:false
             }
         }               
-    },
+    },   
     computed:{
         ...mapState('empleados',['listEmpleados']),
         ...mapState('cargos',['listCargos']),
@@ -219,7 +219,7 @@ export default {
         },
         lockBtn(){
             return this.empleado.name === '' || this.empleado.lastname === '' || this.empleado.card_id === '' ? true : false
-        },
+        }, 
         buscarEmpleado(){
             return this.listEmpleados.filter(empleado => {
                 return empleado.name.toLowerCase().includes(this.buscar) || empleado.card_id.includes(this.buscar)
